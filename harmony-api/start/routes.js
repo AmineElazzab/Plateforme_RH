@@ -18,6 +18,7 @@ const Route = use("Route");
 
 Route.on("/").render("welcome");
 
+// Auth routes
 Route.group(() => {
   Route.post("register", "AuthController.register").validator(
     "RegisterRequest"
@@ -26,5 +27,9 @@ Route.group(() => {
   Route.post("update-password", "AuthController.updatePassword").validator(
     "UpdatePasswordRequest"
   );
-  Route.get("me", "AuthController.me").middleware("apiAuth");
 }).prefix("api/auth");
+
+// User routes
+Route.group(() => {
+  Route.get("users", "UserController.index");
+}).prefix("api");

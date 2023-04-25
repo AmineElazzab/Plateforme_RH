@@ -62,13 +62,6 @@ class AuthController {
       return response.status(401).send({ message: "Invalid credentials." });
     }
   }
-
-  async me({ auth, response }) {
-    return response.json({
-      status: "success",
-      data: auth.user,
-    });
-  }
 }
 
 module.exports = AuthController;
