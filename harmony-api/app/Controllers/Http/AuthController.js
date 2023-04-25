@@ -68,14 +68,9 @@ class AuthController {
       user.password = password;
       await user.save();
 
-      const token = await auth.generate(user);
-
       return response.json({
         status: "success",
-        data: {
-          user,
-          token,
-        },
+        message: "Password updated successfully",
       });
     } catch (error) {
       console.error(error);
