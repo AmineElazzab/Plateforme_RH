@@ -16,17 +16,16 @@ class UpdatePasswordRequest {
 
   get rules() {
     return {
-      email: "required|email",
-      password: "required|confirmed|min:6|max:24",
+      oldPassword: "required",
+      newPassword: "required|confirmed",
     };
   }
 
   get messages() {
     return {
-      "email.required": "You must provide a email field",
-      "email.email": "Invalid email address",
-      "password.confirmed": "Password Confirmation not same",
-      "password.required": "You must provide a password field",
+      "oldPassword.required": "You must provide a old password.",
+      "newPassword.required": "You must provide a new password.",
+      "newPassword.confirmed": "The new password confirmation does not match.",
     };
   }
 }
