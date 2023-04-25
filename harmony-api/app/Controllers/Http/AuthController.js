@@ -10,13 +10,9 @@ class AuthController {
 
       const token = await auth.generate(user);
 
-      return response.json({
-        status: "success",
-        data: {
-          user,
-          token,
-        },
-      });
+      Object.assign(user, token);
+
+      return response.json(user);
     } catch (error) {
       console.error(error);
 
@@ -29,22 +25,12 @@ class AuthController {
   async login({ request, auth, response }) {
     try {
       const { email, password } = request.all();
-      const token = await auth.attempt(email, password);
       const user = await User.findBy("email", email);
+      const token = await auth.attempt(email, password);
 
-      if (!user) {
-        return response.status(404).send({
-          error: "User not found",
-        });
-      }
+      Object.assign(user, token);
 
-      return response.json({
-        status: "success",
-        data: {
-          user,
-          token,
-        },
-      });
+      return response.json(user);
     } catch (error) {
       console.error(error);
 
