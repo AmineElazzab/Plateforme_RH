@@ -17,7 +17,7 @@ class UpdatePasswordRequest {
   get rules() {
     return {
       oldPassword: "required",
-      newPassword: "required|confirmed",
+      newPassword: "required|confirmed|min:6|max:24",
     };
   }
 
