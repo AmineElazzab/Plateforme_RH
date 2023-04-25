@@ -1,4 +1,6 @@
-'use strict'
+
+"use strict";
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,25 +16,24 @@
 */
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
-const Route = use('Route')
 
-Route.on('/').render('welcome')
-Route.group
-    (() => {
-        Route.post('register', 'UserController.register').validator('CreateUser')
-        Route.post('login', 'UserController.login').validator('LoginUser')
-        Route.post('logout', 'UserController.logout')
-        Route.post('refresh', 'UserController.refresh')
-        Route.get('user', 'UserController.user').middleware('auth')
-    }
-    ).prefix('api/auth')
+const Route = use("Route");
 
-Route.group
-    (() => {
-        Route.get('/tasks', 'TaskController.getAllTasks')
-        Route.get('/tasks/:id', 'TaskController.getTaskById')
-        Route.post('/tasks', 'TaskController.addTask')
-        Route.put('/tasks/:id', 'TaskController.updateTask')
-        Route.delete('/tasks/:id', 'TaskController.deleteTask')
-    }
-    ).prefix('api/task')
+Route.on("/").render("welcome");
+
+// Auth routes
+Route.group(() => {
+  Route.post("register", "AuthController.register").validator(
+    "RegisterRequest"
+  );
+  Route.post("login", "AuthController.login").validator("LoginRequest");
+  Route.post("update-password", "AuthController.updatePassword").validator(
+    "UpdatePasswordRequest"
+  );
+}).prefix("api/auth");
+
+// User routes
+Route.group(() => {
+  Route.get("users", "UserController.index");
+}).prefix("api");
+
