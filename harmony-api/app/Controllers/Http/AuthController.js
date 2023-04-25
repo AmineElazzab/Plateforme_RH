@@ -48,37 +48,32 @@ class AuthController {
     } catch (error) {
       console.error(error);
 
-      return response.status(500).send({
-        error: "There was a problem logging in, please try again later.",
+      return response.status(401).send({
+        error: "Invalid email or password",
       });
     }
   }
 
   async updatePassword({ request, auth, response }) {
+    const user = await auth.getUser();
+    const { oldPassword, newPassword } = request.only([
+      "oldPassword",
+      "newPassword",
+    ]);
+
     try {
-      const { email, password } = request.all();
-      const user = await User.findBy("email", email);
+      // Verify the old password matches
+      await auth.attempt(user.email, oldPassword);
 
-      if (!user) {
-        return response.status(404).send({
-          error: "User not found",
-        });
-      }
-
-      user.password = password;
+      // Update the password
+      user.password = newPassword;
       await user.save();
 
-      return response.json({
-        status: "success",
-        message: "Password updated successfully",
-      });
+      return response
+        .status(200)
+        .send({ message: "Password updated successfully." });
     } catch (error) {
-      console.error(error);
-
-      return response.status(500).send({
-        error:
-          "There was a problem updating the password, please try again later.",
-      });
+      return response.status(401).send({ message: "Invalid credentials." });
     }
   }
 
