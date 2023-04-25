@@ -14,7 +14,7 @@ class LoginRequest {
 
   get rules() {
     return {
-      email: "required",
+      email: "required|email",
       password: "required",
     };
   }
@@ -23,6 +23,7 @@ class LoginRequest {
     return {
       "password.required": "You must provide a password field",
       "email.required": "You must provide a email field",
+      "email.email": "You must provide a valid email address",
     };
   }
 }
