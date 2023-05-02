@@ -1,5 +1,6 @@
 "use strict";
 const User = use("App/Models/User");
+const Hash = use("Hash");
 
 class AuthController {
   async register({ request, auth, response }) {
@@ -25,18 +26,27 @@ class AuthController {
   async login({ request, auth, response }) {
     try {
       const { email, password } = request.all();
+
       const user = await User.findBy("email", email);
-      const token = await auth.attempt(email, password);
+
+      if (!user) {
+        return response.status(404).send({ error: "User not found" });
+      }
+
+      const isPasswordValid = await Hash.verify(password, user.password);
+
+      if (!isPasswordValid) {
+        return response.status(401).send({ error: "Invalid password" });
+      }
+
+      const token = await auth.generate(user);
 
       Object.assign(user, token);
-
       return response.json(user);
     } catch (error) {
       console.error(error);
 
-      return response.status(401).send({
-        error: "Invalid email or password",
-      });
+      return response.status(500).send({ error: "Server error" });
     }
   }
 
