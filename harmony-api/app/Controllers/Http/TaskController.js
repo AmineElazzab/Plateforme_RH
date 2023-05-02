@@ -16,6 +16,7 @@ class TaskController {
         task.startDate = taskInfo.startDate
         task.endDate = taskInfo.endDate
         task.proirity = taskInfo.proirity
+        task.complexity = taskInfo.complexity
         task.criticity = taskInfo.criticity
         task.estimatedWorkload = taskInfo.estimatedWorkload
         task.assigned_to = taskInfo.assigned_to
