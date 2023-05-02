@@ -9,7 +9,7 @@ class ProjectSchema extends Schema {
       table.increments("project_id");
       table.string("project_name", 255).notNullable();
       table.string("project_description", 255).notNullable();
-      table.string("project_priority", 255).notNullable();
+      table.integer("project_priority", 255).notNullable();
       table.date("project_start_date", 255).notNullable();
       table.date("project_end_date", 255).notNullable();
       table
