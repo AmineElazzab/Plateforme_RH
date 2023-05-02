@@ -20,6 +20,9 @@ class User extends Model {
       }
     });
   }
+  static get primaryKey() {
+    return "user_id";
+  }
 
   /**
    * A relationship on tokens is required for auth to
