@@ -6,12 +6,18 @@ class AuthController {
   async register({ request, auth, response }) {
     try {
       const user = await User.create(
-        request.only(["username", "email", "password"])
+        request.only([
+          "username",
+          "email",
+          "password",
+          "user_fullname",
+          "user_address",
+          "user_phone",
+          "user_image",
+          "user_department_id",
+          "user_role_id",
+        ])
       );
-
-      const token = await auth.generate(user);
-
-      Object.assign(user, token);
 
       return response.json(user);
     } catch (error) {
