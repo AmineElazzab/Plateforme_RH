@@ -29,6 +29,30 @@ Route.group(() => {
   );
 }).prefix("api/auth");
 
+// Role routes
+Route.group(() => {
+  Route.post("roles", "RoleController.store")
+    .validator("RoleRequest")
+    .middleware("apiAuth");
+  Route.get("roles", "RoleController.index").middleware("apiAuth");
+  Route.put("roles/:role_id", "RoleController.update");
+  Route.delete("roles/:role_id", "RoleController.destroy").middleware(
+    "apiAuth"
+  );
+}).prefix("api");
+
+// Department routes
+Route.group(() => {
+  Route.post("departments", "DepartmentController.store");
+
+  // Route.get("departments", "DepartmentController.index").middleware("apiAuth");
+  // Route.put("departments/:department_id", "DepartmentController.update");
+  // Route.delete(
+  //   "departments/:department_id",
+  //   "DepartmentController.destroy"
+  // ).middleware("apiAuth");
+}).prefix("api");
+
 // User routes
 Route.group(() => {
   Route.get("users", "UserController.index");
