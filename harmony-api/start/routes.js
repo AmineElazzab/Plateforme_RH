@@ -1,4 +1,6 @@
+
 "use strict";
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,7 @@
 */
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
+
 const Route = use("Route");
 
 Route.on("/").render("welcome");
@@ -57,3 +60,14 @@ Route.group(() => {
 Route.group(() => {
   Route.get("users", "UserController.index");
 }).prefix("api");
+
+//Project routes
+Route.group(() => {
+  Route.post("project", "ProjectController.store").validator("CreateProject")
+  Route.get("projects", "ProjectController.index")
+  Route.get("project/:project_id", "ProjectController.show")
+  Route.put("update/:project_id", "ProjectController.update").validator("UpdateProject")
+  Route.delete("delete/:project_id", "ProjectController.destroy")
+}
+).prefix("api");
+
