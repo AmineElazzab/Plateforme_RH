@@ -5,24 +5,6 @@ const Salary = use("App/Models/Salary");
 class SalaryController {
   //create salary
   async store({ request, response }) {
-    // try {
-    //   const salary = await Salary.create(
-    //     request.only([
-    //       "salary_amount",
-    //       "salary_type",
-    //       "salary_user_id",
-    //       "salary_incentives",
-    //       "salary_total",
-    //     ])
-    //   );
-    //   return response.json(salary);
-    // } catch (error) {
-    //   console.error(error);
-    //   return response.status(500).send({
-    //     error:
-    //       "There was a problem creating the salary, please try again later.",
-    //   });
-    // }
     const amount = parseFloat(request.input("salary_amount"));
     const incentives = parseFloat(request.input("salary_incentives"));
     if (isNaN(amount) || isNaN(incentives)) {
@@ -58,7 +40,7 @@ class SalaryController {
   //get salary by id
   async show({ request, response }) {
     try {
-      const salary = await Salary.findOrFail(request.params.id);
+      const salary = await Salary.findOrFail(request.params.salary_id);
       return response.json(salary);
     } catch (error) {
       console.error(error);
@@ -72,13 +54,12 @@ class SalaryController {
   //update salary
   async update({ request, response }) {
     try {
-      const salary = await Salary.findOrFail(request.params.id);
+      const salary = await Salary.findOrFail(request.params.salary_id);
       salary.merge(
         request.only([
           "salary_amount",
           "salary_type",
           "salary_user_id",
-          "salary_total",
         ])
       );
       await salary.save();
@@ -95,9 +76,14 @@ class SalaryController {
   //delete salary
   async destroy({ request, response }) {
     try {
-      const salary = await Salary.findOrFail(request.params.id);
+      const salary = await Salary.find(request.params.salary_id);
+      if (!salary) {
+        return response.status(404).send({
+          error: "No salary found",
+        });
+      }
       await salary.delete();
-      return response.json({ message: "Salary deleted successfully" });
+      return response.json({ message: "Salary deleted!" });
     } catch (error) {
       console.error(error);
       return response.status(500).send({
