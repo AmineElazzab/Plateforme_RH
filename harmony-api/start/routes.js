@@ -71,3 +71,13 @@ Route.group(() => {
 }
 ).prefix("api");
 
+//Task routes
+Route.group(() => {
+  Route.post("task", "TaskController.store").validator("CreateTask")
+  Route.get("tasks", "TaskController.index")
+  Route.get("task/:task_id", "TaskController.show")
+  Route.put("updateTask/:task_id", "TaskController.update").validator("UpdateTask")
+  Route.delete("deleteTask/:task_id", "TaskController.destroy")
+}
+).prefix("api");
+
