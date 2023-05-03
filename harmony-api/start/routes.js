@@ -1,6 +1,4 @@
-
 "use strict";
-
 
 /*
 |--------------------------------------------------------------------------
@@ -36,12 +34,22 @@ Route.group(() => {
 Route.group(() => {
   Route.post("roles", "RoleController.store")
     .validator("RoleRequest")
-    .middleware("apiAuth");
-  Route.get("roles", "RoleController.index").middleware("apiAuth");
-  Route.put("roles/:role_id", "RoleController.update");
-  Route.delete("roles/:role_id", "RoleController.destroy").middleware(
-    "apiAuth"
-  );
+    .middleware(["auth:jwt", "checkUserRolePermissions:Administrator"]);
+
+  Route.get("roles", "RoleController.index").middleware([
+    "auth:jwt",
+    "checkUserRolePermissions:Administrator,Project Manager,Project Leader",
+  ]);
+
+  Route.put("roles/:role_id", "RoleController.update").middleware([
+    "auth:jwt",
+    "checkUserRolePermissions:Administrator,Project Manager,Project Leader",
+  ]);
+
+  Route.delete("roles/:role_id", "RoleController.destroy").middleware([
+    "auth:jwt",
+    "checkUserRolePermissions:Administrator",
+  ]);
 }).prefix("api");
 
 // Department routes
@@ -63,11 +71,20 @@ Route.group(() => {
 
 //Project routes
 Route.group(() => {
-  Route.post("project", "ProjectController.store").validator("CreateProject")
-  Route.get("projects", "ProjectController.index")
-  Route.get("project/:project_id", "ProjectController.show")
-  Route.put("update/:project_id", "ProjectController.update").validator("UpdateProject")
-  Route.delete("delete/:project_id", "ProjectController.destroy")
-}
-).prefix("api");
+  Route.post("project", "ProjectController.store").validator("CreateProject");
+  Route.get("projects", "ProjectController.index");
+  Route.get("project/:project_id", "ProjectController.show");
+  Route.put("update/:project_id", "ProjectController.update").validator(
+    "UpdateProject"
+  );
+  Route.delete("delete/:project_id", "ProjectController.destroy");
+}).prefix("api");
 
+// Task routes
+Route.group(() => {
+  Route.post("task", "TaskController.store");
+  Route.get("tasks", "TaskController.index");
+  Route.get("task/:task_id", "TaskController.show");
+  Route.put("update/:task_id", "TaskController.update").validator("UpdateTask");
+  Route.delete("delete/:task_id", "TaskController.destroy");
+}).prefix("api");
