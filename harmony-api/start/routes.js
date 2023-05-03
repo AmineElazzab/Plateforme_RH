@@ -90,3 +90,12 @@ Route.group(() => {
 }
 ).prefix("api");
 
+//Salary routes
+Route.group(() => {
+  Route.post("salary", "SalaryController.store").validator("CreateSalary")
+  Route.get("salaries", "SalaryController.index")
+  Route.get("salary/:salary_id", "SalaryController.show")
+  Route.put("updateSalary/:salary_id", "SalaryController.update").validator("UpdateSalary")
+  Route.delete("deleteSalary/:salary_id", "SalaryController.destroy")
+}
+).prefix("api");
