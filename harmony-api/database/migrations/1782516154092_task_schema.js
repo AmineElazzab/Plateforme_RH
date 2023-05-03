@@ -7,34 +7,17 @@ class TaskSchema extends Schema {
   up() {
     this.create("tasks", (table) => {
       table.increments("task_id");
-      table
-        .integer("task_project_id")
-        .unsigned()
-        .notNullable()
-        .references("project_id")
-        .inTable("projects");
+      table.integer("task_project_id").unsigned().notNullable().references("project_id").inTable("projects");
       table.string("task_name", 80).notNullable();
       table.string("task_description", 254).notNullable();
       table.string("task_feature", 254).notNullable();
       table.string("task_type", 245).notNullable();
       table.date("task_start_date").notNullable();
       table.date("task_end_date").notNullable();
-      table
-        .enu("task_priority", ["low", "medium", "high", "critical"])
-        .notNullable();
+      table.enu("task_priority", ["low", "medium", "high", "critical"]).notNullable();
       table.enu("task_complexity", ["low", "medium", "high"]).notNullable();
-      table
-        .enu("task_dev_status", [
-          "to do",
-          "wip",
-          "pending",
-          "blocked",
-          "ready for test",
-          "rework",
-          "done",
-        ])
-        .notNullable()
-        .defaultTo("to do");
+      table.enu("task_dev_status", ["to do","wip","pending","blocked","ready for test","rework","done",])
+        .notNullable().defaultTo("to do");
       table.boolean("task_rework").notNullable().defaultTo(0);
       table.boolean("task_functional_test_status").notNullable().defaultTo(0);
       table.integer("task_progress").notNullable().defaultTo(0);

@@ -4,8 +4,8 @@
 const Model = use("Model");
 
 class Task extends Model {
-  static get table() {
-    return "tasks";
+  static get primaryKey() {
+    return "task_id";
   }
 
   project() {

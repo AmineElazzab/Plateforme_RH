@@ -80,11 +80,13 @@ Route.group(() => {
   Route.delete("delete/:project_id", "ProjectController.destroy");
 }).prefix("api");
 
-// Task routes
+//Task routes
 Route.group(() => {
-  Route.post("task", "TaskController.store");
+  Route.post("task", "TaskController.store").validator("CreateTask");
   Route.get("tasks", "TaskController.index");
   Route.get("task/:task_id", "TaskController.show");
-  Route.put("update/:task_id", "TaskController.update").validator("UpdateTask");
-  Route.delete("delete/:task_id", "TaskController.destroy");
+  Route.put("updateTask/:task_id", "TaskController.update").validator(
+    "UpdateTask"
+  );
+  Route.delete("deleteTask/:task_id", "TaskController.destroy");
 }).prefix("api");
