@@ -4,15 +4,16 @@ class CreateTask {
   get rules() {
     return {
       // validation rules
-      task_project_id: 'required',
-      task_name: 'required',
-      task_description: 'required',
-      task_feature: 'required',
-      task_type: 'required',
-      task_start_date: 'required',
-      task_end_date: 'required',
-      task_priority: 'required',
-      task_complexity: 'required',
+      task_project_id: "required",
+      task_name: "required|task_name|unique:tasks",
+      task_description: "required",
+      task_feature: "required",
+      task_type: "required",
+      task_start_date: "required",
+      task_end_date: "required",
+      task_priority: "required",
+      task_complexity: "required",
+      task_comments: "required|max:200",
     };
   }
 
@@ -29,6 +30,8 @@ class CreateTask {
       "task_complexity.required": "You must provide a task complexity.",
       "task_dev_status.required": "You must provide a task dev status.",
       "task_rework.required": "You must provide a task rework.",
+      "task_comments.required": "You must provide a task comments.",
+      "task_comments.max": "Task comments must be less than 200 characters.",
     };
   }
 
