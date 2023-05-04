@@ -4,6 +4,9 @@
 const Model = use("Model");
 
 class Risk extends Model {
+  static get primaryKey() {
+    return "risk_id";
+  }
   projects() {
     return this.belongsTo("App/Models/Project");
   }
