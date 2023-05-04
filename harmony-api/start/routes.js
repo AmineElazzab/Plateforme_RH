@@ -99,3 +99,13 @@ Route.group(() => {
   Route.delete("deleteSalary/:salary_id", "SalaryController.destroy")
 }
 ).prefix("api");
+
+//Risk routes
+Route.group(() => {
+  Route.post("risk", "RiskController.store").validator("CreateRisk")
+  Route.get("risks", "RiskController.index")
+  Route.get("risk/:risk_id", "RiskController.show")
+  Route.put("updateRisk/:risk_id", "RiskController.update").validator("UpdateRisk")
+  Route.delete("deleteRisk/:risk_id", "RiskController.destroy")
+}
+).prefix("api");
