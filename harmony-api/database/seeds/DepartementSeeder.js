@@ -17,8 +17,7 @@ class DepartementSeeder {
   async run() {
     const departements = await Factory.model(
       "App/Models/Departement"
-    ).createMany(1);
-    console.log(departements);
+    ).createMany(2);
   }
 }
 
