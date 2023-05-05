@@ -69,10 +69,16 @@ class User extends Model {
       "App/Models/TrainingCollaborator"
     );
   }
-  
+
   skills() {
     return this.belongsToMany("App/Models/Skill").pivotModel(
       "App/Models/SkillCollaborator"
+    );
+  }
+
+  projects() {
+    return this.belongsToMany("App/Models/Project").pivotModel(
+      "App/Models/ProjectCollaborator"
     );
   }
 }

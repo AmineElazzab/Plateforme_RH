@@ -1,18 +1,5 @@
 "use strict";
 
-/*
-|--------------------------------------------------------------------------
-| Routes
-|--------------------------------------------------------------------------
-|
-| Http routes are entry points to your web application. You can create
-| routes for different URL's and bind Controller actions to them.
-|
-| A complete guide on routing is available here.
-| http://adonisjs.com/docs/4.1/routing
-|
-*/
-
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 
 const Route = use("Route");
@@ -54,19 +41,28 @@ Route.group(() => {
 
 // Department routes
 Route.group(() => {
-  Route.post("departments", "DepartmentController.store");
+  Route.post("departments", "DepartmentController.store").validator(
+    "CreateDepartement"
+  );
 
-  // Route.get("departments", "DepartmentController.index").middleware("apiAuth");
-  // Route.put("departments/:department_id", "DepartmentController.update");
-  // Route.delete(
-  //   "departments/:department_id",
-  //   "DepartmentController.destroy"
-  // ).middleware("apiAuth");
+  Route.get("departments", "DepartmentController.index").middleware([
+    "auth:jwt",
+    "checkUserRolePermissions:Administrator, Human Resources",
+  ]);
+  Route.put("departments/:departement_id", "DepartmentController.update");
+
+  Route.delete(
+    "departments/:departement_id",
+    "DepartmentController.destroy"
+  ).middleware(["auth:jwt", "checkUserRolePermissions:Administrator"]);
 }).prefix("api");
 
 // User routes
 Route.group(() => {
   Route.get("users", "UserController.index");
+  Route.post("users/assign", "UserController.assignProject");
+  Route.get("users/:user_id/projects", "UserController.getUserWithProjects");
+  // Route.put("users/:user_id/projects", "UserController.updateProject");
 }).prefix("api");
 
 //Project routes
@@ -89,6 +85,7 @@ Route.group(() => {
     "UpdateTask"
   );
   Route.delete("deleteTask/:task_id", "TaskController.destroy");
+  Route.post("task/assign", "TaskController.assignTask");
 }).prefix("api");
 
 //Salary routes
@@ -125,4 +122,9 @@ Route.group(() => {
   Route.get("skillName/:skill_name", "SkillController.getSkillByName");
   Route.post("assignSkill", "SkillController.assignSkillToUser");
   Route.get("userSkills/:user_id", "SkillController.getUserSkills");
+}).prefix("api");
+
+//Suggestion routes
+Route.group(() => {
+  Route.post("suggestion", "SuggestionController.sendSuggestionEmail");
 }).prefix("api");
