@@ -21,18 +21,16 @@ Route.group(() => {
 Route.group(() => {
   Route.post("roles", "RoleController.store")
     .validator("RoleRequest")
-    // .middleware(["auth:jwt", "checkUserRolePermissions:Administrator"]);
+    .middleware(["auth:jwt", "checkUserRolePermissions:Administrator"]);
 
   Route.get("roles", "RoleController.index").middleware([
     "auth:jwt",
     "checkUserRolePermissions:Administrator,Project Manager,Project Leader",
   ]);
-
   Route.put("roles/:role_id", "RoleController.update").middleware([
     "auth:jwt",
     "checkUserRolePermissions:Administrator,Project Manager,Project Leader",
   ]);
-
   Route.delete("roles/:role_id", "RoleController.destroy").middleware([
     "auth:jwt",
     "checkUserRolePermissions:Administrator",
@@ -44,13 +42,11 @@ Route.group(() => {
   Route.post("departments", "DepartmentController.store").validator(
     "CreateDepartement"
   );
-
   Route.get("departments", "DepartmentController.index").middleware([
     "auth:jwt",
     "checkUserRolePermissions:Administrator, Human Resources",
   ]);
   Route.put("departments/:departement_id", "DepartmentController.update");
-
   Route.delete(
     "departments/:departement_id",
     "DepartmentController.destroy"
