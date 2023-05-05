@@ -27,6 +27,8 @@ class CreateTask {
       "task_complexity.required": "You must provide a task complexity.",
       "task_dev_status.required": "You must provide a task dev status.",
       "task_rework.required": "You must provide a task rework.",
+      "task_comments.required": "You must provide a task comments.",
+      "task_comments.max": "Task comments must be less than 200 characters.",
     };
   }
 
