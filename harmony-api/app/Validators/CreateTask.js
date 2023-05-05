@@ -4,21 +4,19 @@ class CreateTask {
   get rules() {
     return {
       // validation rules
-      task_project_id: 'required',
-      task_name: 'required',
-      task_description: 'required',
-      task_feature: 'required',
-      task_type: 'required',
-      task_start_date: 'required',
-      task_end_date: 'required',
-      task_priority: 'required',
-      task_complexity: 'required',
+      task_name: "required",
+      task_description: "required",
+      task_feature: "required",
+      task_type: "required",
+      task_start_date: "required",
+      task_end_date: "required",
+      task_priority: "required",
+      task_complexity: "required",
     };
   }
 
   get messages() {
     return {
-      "task_project_id.required": "You must provide a project id.",
       "task_name.required": "You must provide a task name.",
       "task_description.required": "You must provide a task description.",
       "task_feature.required": "You must provide a task feature.",
