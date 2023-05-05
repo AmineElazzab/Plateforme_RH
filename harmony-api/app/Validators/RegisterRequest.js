@@ -14,7 +14,6 @@ class RegisterRequest {
 
   get rules() {
     return {
-      username: "required",
       email: "required|email|unique:users",
       password: "required|confirmed|min:6|max:24",
       user_fullname: "required",
@@ -28,7 +27,6 @@ class RegisterRequest {
 
   get messages() {
     return {
-      "username.required": "You must provide a name field",
       "email.required": "You must provide a email field",
       "email.email": "Invalid email address",
       "email.unique": "Email already registered!",
