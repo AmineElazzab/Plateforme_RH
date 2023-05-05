@@ -6,7 +6,7 @@ class CreateSkill {
       // validation rules
       skill_name: "required",
       skill_description: "required|max:200",
-      skill_mastery: "required",
+      skill_level: "required",
     };
   }
 
@@ -14,7 +14,7 @@ class CreateSkill {
     return {
       "skill_name.required": "You must provide a skill name.",
       "skill_description.required": "You must provide a skill description.",
-      "skill_mastery.required": "You must provide a skill mastery.",
+      "skill_level.required": "You must provide a skill mastery.",
     };
   }
 
