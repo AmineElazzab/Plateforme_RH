@@ -9,7 +9,9 @@ class SkillSchema extends Schema {
       table.increments("skill_id");
       table.string("skill_name", 255).notNullable();
       table.string("skill_description", 255).notNullable();
-      table.string("skill_mastery").notNullable();
+      table
+        .enu("skill_level", ["Beginner", "Competent", "Proficient", "Expert"])
+        .notNullable();
       table.timestamps();
     });
   }

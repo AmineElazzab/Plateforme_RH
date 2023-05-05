@@ -1,5 +1,6 @@
 "use strict";
 const Skill = use("App/Models/Skill");
+const User = use("App/models/User");
 
 class SkillController {
   //create skill
@@ -93,6 +94,73 @@ class SkillController {
       });
     }
   }
+
+  //get skill by name
+  async getSkillByName({ request, response }) {
+    try {
+      const skill = await Skill.findBy("skill_name", request.params.skill_name);
+      if (!skill) {
+        return response.status(404).send({
+          error: "No skill found",
+        });
+      }
+      return response.json(skill);
+    } catch (error) {
+      console.error(error);
+      return response.status(500).send({
+        error:
+          "There was a problem retrieving the skill, please try again later.",
+      });
+    }
+  }
+
+  //assing skill to user
+  async assignSkillToUser({ request, response }) {
+    try {
+      const skill = await Skill.find(request.params.skill_id);
+      if (!skill) {
+        return response.status(404).send({
+          error: "No skill found",
+        });
+      }
+      const user = await User.find(request.params.user_id);
+      if (!user) {
+        return response.status(404).send({
+          error: "No user found",
+        });
+      }
+      await user.skills().attach([skill.skill_id]);
+      return response.json({ message: "Skill assigned to user!" });
+    } catch (error) {
+      console.error(error);
+      return response.status(500).send({
+        error:
+          "There was a problem assigning the skill to the user, please try again later.",
+      });
+    }
+  }
+
+  //get all skills from user
+  async getUserSkills({ request, response }) {
+    try {
+      const user = await User.find(request.params.user_id);
+      if (!user) {
+        return response.status(404).send({
+          error: "No user found",
+        });
+      }
+      const skills = await user.skills().fetch();
+      return response.json(skills);
+    } catch (error) {
+      console.error(error);
+      return response.status(500).send({
+        error:
+          "There was a problem retrieving the skills, please try again later.",
+      });
+    }
+  }
+  
+
 }
 
 module.exports = SkillController;
