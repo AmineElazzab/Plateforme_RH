@@ -7,7 +7,7 @@ class TaskSchema extends Schema {
   up() {
     this.create("tasks", (table) => {
       table.increments("task_id");
-      table.integer("task_project_id").unsigned().notNullable().references("project_id").inTable("projects");
+      table.integer("task_project_id").unsigned().nullable().references("project_id").inTable("projects");
       table.string("task_name", 80).notNullable();
       table.string("task_description", 254).notNullable();
       table.string("task_feature", 254).notNullable();
