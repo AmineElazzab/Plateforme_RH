@@ -82,30 +82,47 @@ Route.group(() => {
 
 //Task routes
 Route.group(() => {
-  Route.post("task", "TaskController.store").validator("CreateTask")
-  Route.get("tasks", "TaskController.index")
-  Route.get("task/:task_id", "TaskController.show")
-  Route.put("updateTask/:task_id", "TaskController.update").validator("UpdateTask")
-  Route.delete("deleteTask/:task_id", "TaskController.destroy")
-}
-).prefix("api");
+  Route.post("task", "TaskController.store").validator("CreateTask");
+  Route.get("tasks", "TaskController.index");
+  Route.get("task/:task_id", "TaskController.show");
+  Route.put("updateTask/:task_id", "TaskController.update").validator(
+    "UpdateTask"
+  );
+  Route.delete("deleteTask/:task_id", "TaskController.destroy");
+}).prefix("api");
 
 //Salary routes
 Route.group(() => {
-  Route.post("salary", "SalaryController.store").validator("CreateSalary")
-  Route.get("salaries", "SalaryController.index")
-  Route.get("salary/:salary_id", "SalaryController.show")
-  Route.put("updateSalary/:salary_id", "SalaryController.update").validator("UpdateSalary")
-  Route.delete("deleteSalary/:salary_id", "SalaryController.destroy")
-}
-).prefix("api");
+  Route.post("salary", "SalaryController.store").validator("CreateSalary");
+  Route.get("salaries", "SalaryController.index");
+  Route.get("salary/:salary_id", "SalaryController.show");
+  Route.put("updateSalary/:salary_id", "SalaryController.update").validator(
+    "UpdateSalary"
+  );
+  Route.delete("deleteSalary/:salary_id", "SalaryController.destroy");
+}).prefix("api");
 
 //Risk routes
 Route.group(() => {
-  Route.post("risk", "RiskController.store").validator("CreateRisk")
-  Route.get("risks", "RiskController.index")
-  Route.get("risk/:risk_id", "RiskController.show")
-  Route.put("updateRisk/:risk_id", "RiskController.update").validator("UpdateRisk")
-  Route.delete("deleteRisk/:risk_id", "RiskController.destroy")
-}
-).prefix("api");
+  Route.post("risk", "RiskController.store").validator("CreateRisk");
+  Route.get("risks", "RiskController.index");
+  Route.get("risk/:risk_id", "RiskController.show");
+  Route.put("updateRisk/:risk_id", "RiskController.update").validator(
+    "UpdateRisk"
+  );
+  Route.delete("deleteRisk/:risk_id", "RiskController.destroy");
+}).prefix("api");
+
+//Skill routes
+Route.group(() => {
+  Route.post("skill", "SkillController.store").validator("CreateSkill");
+  Route.get("skills", "SkillController.index");
+  Route.get("skill/:skill_id", "SkillController.show");
+  Route.put("updateSkill/:skill_id", "SkillController.update").validator(
+    "UpdateSkill"
+  );
+  Route.delete("deleteSkill/:skill_id", "SkillController.destroy");
+  Route.get("skillName/:skill_name", "SkillController.getSkillByName");
+  Route.post("assignSkill", "SkillController.assignSkillToUser");
+  Route.get("userSkills/:user_id", "SkillController.getUserSkills");
+}).prefix("api");
