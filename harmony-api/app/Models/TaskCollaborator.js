@@ -5,7 +5,7 @@ const Model = use("Model");
 
 class TaskCollaborator extends Model {
   static get table() {
-    return "task_collaborator";
+    return "task_collaborators";
   }
   tasks() {
     return this.belongsTo("App/Models/Task");
