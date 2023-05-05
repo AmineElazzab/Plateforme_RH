@@ -4,8 +4,8 @@
 const Model = use("Model");
 
 class Salary extends Model {
-  static get table() {
-    return "salaries";
+  static get primaryKey() {
+    return "salary_id";
   }
 
   users() {

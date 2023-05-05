@@ -4,6 +4,9 @@
 const Model = use("Model");
 
 class Departement extends Model {
+  static get primaryKey() {
+    return "departement_id";
+  }
   static get table() {
     return "departements";
   }

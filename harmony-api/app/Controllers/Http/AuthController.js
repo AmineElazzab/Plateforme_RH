@@ -7,7 +7,6 @@ class AuthController {
     try {
       const user = await User.create(
         request.only([
-          "username",
           "email",
           "password",
           "user_fullname",
