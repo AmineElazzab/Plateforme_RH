@@ -71,9 +71,7 @@ class User extends Model {
   }
 
   skills() {
-    return this.belongsToMany("App/Models/Skill").pivotModel(
-      "App/Models/SkillCollaborator"
-    );
+    return this.hasMany("App/Models/Skill")
   }
 
   projects() {
