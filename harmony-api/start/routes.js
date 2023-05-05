@@ -21,7 +21,7 @@ Route.group(() => {
 Route.group(() => {
   Route.post("roles", "RoleController.store")
     .validator("RoleRequest")
-    .middleware(["auth:jwt", "checkUserRolePermissions:Administrator"]);
+    // .middleware(["auth:jwt", "checkUserRolePermissions:Administrator"]);
 
   Route.get("roles", "RoleController.index").middleware([
     "auth:jwt",
@@ -120,8 +120,8 @@ Route.group(() => {
   );
   Route.delete("deleteSkill/:skill_id", "SkillController.destroy");
   Route.get("skillName/:skill_name", "SkillController.getSkillByName");
-  Route.post("assignSkill", "SkillController.assignSkillToUser");
-  Route.get("userSkills/:user_id", "SkillController.getUserSkills");
+  Route.post("assignSkill", "SkillController.assignSkill");
+  Route.get("userSkills/:skill_user_id", "SkillController.getUserSkills");
 }).prefix("api");
 
 //Suggestion routes
