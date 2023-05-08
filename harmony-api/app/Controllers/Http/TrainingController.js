@@ -1,12 +1,11 @@
 "use strict";
 const Training = use("App/Models/Training");
 const User = use("App/Models/User");
-const Skill = use("App/Models/Skill");
 const Trainig_Collaborattor = use("App/Models/TrainingCollaborator");
 
 class TrainingController {
   //create training
-  async store({ request, response }) {
+  async create({ request, response }) {
     try {
       const training = await Training.create(
         request.only([
@@ -17,19 +16,6 @@ class TrainingController {
           "training_link",
         ])
       );
-      //count down for training duration
-      // const trainingDuration = training.training_duration;
-      // const trainingDurationInMiliseconds = trainingDuration * 60000;
-      // setTimeout(async () => {
-      //   const training = await Training.find(training.id);
-      //   if (!training) {
-      //     return response.status(404).send({
-      //       error: "No training found",
-      //     });
-      //   }
-      //   training.training_status = "Completed";
-      //   await training.save();
-      // }, trainingDurationInMiliseconds);
       return response.json(training);
     } catch (error) {
       console.error(error);
