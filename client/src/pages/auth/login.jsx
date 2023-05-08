@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { login } from "../../api/auth";
 import JWTToken from "../../lib/token";
+import { fetchRole } from "../../api/roles";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { resolver } from "../../lib/validation/auth";
@@ -39,6 +40,8 @@ function Login() {
 	// 	// TODO: implement login logic
 	// };
 	const redirect = (roleId) => {
+		const role = fetchRole(roleId)
+		const roleName = role.data?.roleName
 		switch (roleId) {
 			case 1:
 			  // code to be executed if expression === value1
