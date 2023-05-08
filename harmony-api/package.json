@@ -29,6 +29,7 @@
     "@adonisjs/shield": "^1.0.8",
     "@adonisjs/validator": "^5.1.0",
     "@adonisjs/vow": "^1.0.17",
+    "@sendgrid/mail": "^7.7.0",
     "mysql": "^2.18.1"
   },
   "autoload": {
