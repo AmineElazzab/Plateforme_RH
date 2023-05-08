@@ -33,8 +33,6 @@
     "@adonisjs/vow": "^1.0.17",
     "@sendgrid/mail": "^7.7.0",
     "mysql": "^2.18.1"
-    
-    "mysql2": "^3.2.4"
   },
   "autoload": {
     "App": "./app"
