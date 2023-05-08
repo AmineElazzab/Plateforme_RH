@@ -27,6 +27,10 @@ Route.group(() => {
     "auth:jwt",
     "checkUserRolePermissions:Administrator,Project Manager,Project Leader",
   ]);
+  Route.get("roles/:role_id", "RoleController.show").middleware([
+    "auth:jwt",
+    "checkUserRolePermissions:Administrator,Project Manager,Project Leader, Human Resources, Collaborator",
+  ]);
   Route.put("roles/:role_id", "RoleController.update").middleware([
     "auth:jwt",
     "checkUserRolePermissions:Administrator,Project Manager,Project Leader",
