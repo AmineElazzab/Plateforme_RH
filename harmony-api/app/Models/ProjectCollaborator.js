@@ -24,7 +24,7 @@ class ProjectCollaborator extends Model {
     this.addHook("afterDelete", async (pivot) => {
       console.log("After delete hook called with pivot: ", pivot);
       const user = await User.find(pivot.user_id);
-      user.user_workload = user.user_workload - 30;
+      user.user_workload -= 30;
       await user.save();
     });
   }
