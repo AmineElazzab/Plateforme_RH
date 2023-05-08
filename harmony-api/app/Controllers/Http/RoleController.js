@@ -33,6 +33,25 @@ class RoleController {
     }
   }
 
+  //get role by id
+  async show({ request, response }) {
+    try {
+      const role = await Role.find(request.params.role_id);
+      if (!role) {
+        return response.status(404).send({
+          error: "No role found",
+        });
+      }
+      return response.json(role);
+    } catch (error) {
+      console.error(error);
+      return response.status(500).send({
+        error:
+          "There was a problem retrieving the role, please try again later.",
+      });
+    }
+  }
+
   async update({ request, response, params }) {
     try {
       const role = await Role.find(params.role_id);

@@ -12,13 +12,15 @@ class ProjectCollaboratorSchema extends Schema {
         .unsigned()
         .notNullable()
         .references("project_id")
-        .inTable("projects");
+        .inTable("projects")
+        .onDelete("cascade");
       table
         .integer("user_id")
         .unsigned()
         .notNullable()
         .references("user_id")
-        .inTable("users");
+        .inTable("users")
+        .onDelete("cascade");
       table.timestamps();
     });
   }

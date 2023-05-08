@@ -16,7 +16,8 @@ class TaskCollaboratorSchema extends Schema {
         .integer("user_id")
         .unsigned()
         .references("user_id")
-        .inTable("users");
+        .inTable("users")
+        .onDelete("CASCADE");
       table.timestamps();
     });
   }
