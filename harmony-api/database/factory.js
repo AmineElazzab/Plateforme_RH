@@ -59,12 +59,51 @@ Factory.blueprint("App/Models/Project", async (faker, i, data) => {
     project_name: names[i],
     project_description: faker.sentence(),
     project_priority: faker.integer({ min: 1, max: 5 }),
-    project_start_date: "2023-05-08 09:30:46",
-    project_end_date: "2023-06-08 09:30:46",
+    project_start_date: startDate.toISOString(),
+    project_end_date: faker.date({ year: 2023 }).toISOString(),
     project_milestones: "Kick-Off",
     project_status: "Open",
     project_type: "Internal",
     project_progress: 0,
+    created_at: startDate.toISOString(),
+    updated_at: startDate.toISOString(),
+  };
+});
+
+Factory.blueprint("App/Models/Training", async (faker, i, data) => {
+  const names = [
+    "Front-End Frameworks (e.g., React, Angular, Vue.js)",
+    "Back-End Frameworks (e.g., Express, Django, Ruby on Rails)",
+    "Databases (e.g., MySQL, MongoDB, PostgreSQL)",
+    "Version Control (e.g., Git, SVN)",
+    "Cloud Computing (e.g., AWS, Azure, Google Cloud)",
+    "DevOps (e.g., Docker, Kubernetes, Jenkins)",
+    "Testing (e.g., Jest, Mocha, Selenium)",
+    "Programming Languages (e.g., Python, Java, C++)",
+    "Mobile Development (e.g., React Native, Flutter, Swift)",
+    "Machine Learning (e.g., TensorFlow, PyTorch, Scikit-Learn)",
+    "Artificial Intelligence (e.g., Natural Language Processing, Computer Vision)",
+    "Blockchain (e.g., Ethereum, Hyperledger, Corda)",
+    "Internet of Things (e.g., Arduino, Raspberry Pi, Particle)",
+    "Cybersecurity (e.g., Penetration Testing, Cryptography, Network Security)",
+  ];
+  const type= [
+    "Online Courses",
+    "Bootcamps: Intensive",
+    "Workshops and Conferences",
+    "Tutorials and Documentation",
+    "Hackathons",
+  ]
+  const startDate = new Date();
+  return {
+    training_name: names[i],
+    training_description: faker.sentence(),
+    training_type: type[i],
+    training_duration:
+      faker.integer({ min: 1, max: 5 }) +
+      " " +
+      faker.pickone(["days", "weeks", "months"]),
+    training_link: faker.url(),
     created_at: startDate.toISOString(),
     updated_at: startDate.toISOString(),
   };
