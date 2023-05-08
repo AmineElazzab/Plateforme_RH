@@ -15,8 +15,8 @@ const Factory = use("Factory");
 
 class RoleSeeder {
   async run() {
-    const roles = await Factory.model("App/Models/Role").createMany(1);
-    console.log(roles);
+    const roles = await Factory.model("App/Models/Role").createMany(5);
+    // console.log(roles);
   }
 }
 
