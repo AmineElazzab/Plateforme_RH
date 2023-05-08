@@ -23,8 +23,8 @@ class Project extends Model {
     return this.belongsTo("App/Models/ProjectLeader");
   }
   users() {
-    return this.belongsToMany("App/Models/User").pivotTable(
-      "project_collaborators"
+    return this.belongsToMany("App/Models/User").pivotModel(
+      "App/Models/ProjectCollaborator"
     );
   }
 }
