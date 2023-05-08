@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 
 /*
 |--------------------------------------------------------------------------
@@ -11,12 +11,12 @@
 */
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
-const Factory = use('Factory')
+const Factory = use("Factory");
 
 class ProjectSeeder {
-  async run () {
-    const projects = await Factory.model('App/Models/Project').createMany(2)
+  async run() {
+    const projects = await Factory.model("App/Models/Project").createMany(2);
   }
 }
 
-module.exports = ProjectSeeder
+module.exports = ProjectSeeder;

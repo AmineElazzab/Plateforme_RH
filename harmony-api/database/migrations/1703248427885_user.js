@@ -30,7 +30,7 @@ class UserSchema extends Schema {
         .notNullable()
         .defaultTo("active");
 
-      table.integer("user_workload").nullable();
+      table.integer("user_workload").nullable().defaultTo("0");
       table.date("user_start_date").nullable();
 
       table.timestamps();

@@ -7,7 +7,7 @@ const Hash = use("Hash");
 Factory.blueprint("App/Models/User", async (faker) => {
   return {
     email: faker.email(),
-    password: await Hash.make("123456"),
+    password: "12345678",
     user_role_id: faker.integer({ min: 1, max: 5 }),
     user_department_id: faker.integer({ min: 1, max: 2 }),
     user_phone: faker.phone({ formatted: false }),
