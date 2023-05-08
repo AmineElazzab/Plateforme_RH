@@ -69,6 +69,7 @@ class UserController {
     return response.json({ projectUser, user });
   }
 
+  // get user with projects
   async getUserWithProjects({ params, response }) {
     try {
       const user = await User.query()

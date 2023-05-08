@@ -69,6 +69,11 @@ class User extends Model {
       "App/Models/TrainingCollaborator"
     );
   }
+
+  skills() {
+    return this.hasMany("App/Models/Skill")
+  }
+
   projects() {
     return this.belongsToMany("App/Models/Project").pivotModel(
       "App/Models/ProjectCollaborator"
