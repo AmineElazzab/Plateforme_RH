@@ -31,6 +31,29 @@ class Project extends Model {
         console.error("Error adjusting user workload:", error);
       }
     });
+
+    this.addHook("afterUpdate", async (project) => {
+      try {
+        const collaborators = await ProjectCollaborator.query()
+          .where("project_id", project.project_id)
+          .fetch();
+
+        // only update workload if project is Roll-Out Phase
+        if (project.project_milestones === "Roll-Out Phase") {
+          await Promise.all(
+            collaborators.rows.map(async (collaborator) => {
+              const user = await collaborator.users().fetch();
+              if (user) {
+                user.user_workload -= 30;
+                await user.save();
+              }
+            })
+          );
+        }
+      } catch (error) {
+        console.error("Error adjusting user workload:", error);
+      }
+    });
   }
 
   departments() {
