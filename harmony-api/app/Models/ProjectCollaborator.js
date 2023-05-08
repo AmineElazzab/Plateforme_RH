@@ -20,13 +20,6 @@ class ProjectCollaborator extends Model {
       user.user_workload += 30;
       await user.save();
     });
-
-    this.addHook("afterDelete", async (pivot) => {
-      console.log("After delete hook called with pivot: ", pivot);
-      const user = await User.find(pivot.user_id);
-      user.user_workload -= 30;
-      await user.save();
-    });
   }
 
   projects() {

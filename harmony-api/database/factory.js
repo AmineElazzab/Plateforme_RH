@@ -55,6 +55,7 @@ Factory.blueprint("App/Models/Departement", async (faker, i, data) => {
 Factory.blueprint("App/Models/Project", async (faker, i, data) => {
   const names = ["Project 1", "Project 2"];
   const startDate = new Date();
+  // console.log(startDate.toISOString());
   return {
     project_name: names[i],
     project_description: faker.sentence(),
