@@ -1,5 +1,62 @@
+<!-- suggestions.edge -->
 
-
-<p>A new suggestion has been submitted by {{ user.user_fullname }}, ({{ user.email }}):</p>
-<h2>{{ suggestion_name }}</h2>
-<p>{{ suggestion_description }}</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>New Suggestion</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F8F8F8;
+            color: #333333;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: #FFFFFF;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo img {
+            width: 150px;
+            height: auto;
+        }
+        
+        h1 {
+            color: #FFA500;
+            font-size: 24px;
+            margin-top: 0;
+        }
+        
+        p {
+            margin-bottom: 10px;
+        }
+        
+        .strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            {{--  <img src="{{ assetsUrl('../images/harmony.png') }}" alt="Logo">  --}}
+        </div>
+        <h1>New Suggestion</h1>
+        <p class="strong">Name:</p>
+        <p>{{ suggestion_name }}</p>
+        <p class="strong">Description:</p>
+        <p>{{ suggestion_description }}</p>
+    </div>
+</body>
+</html>
