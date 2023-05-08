@@ -5,7 +5,10 @@ const Model = use("Model");
 
 class TrainingCollaborator extends Model {
   static get table() {
-    return "training_collaborator";
+    return "training_collaborators";
+  }
+  static get primaryKey() {
+    return "training_collaborator_id";
   }
 
   trainings() {
