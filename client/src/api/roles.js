@@ -4,6 +4,7 @@ import JWTToken from "../lib/token";
 
 export const fetchRole = async (id) => {
 	const token = JWTToken.getToken();
+	console.log({token,});
 	try {
 		const { data } = await client.get(`/roles/${id}`, {
 			headers: {

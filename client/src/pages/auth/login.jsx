@@ -39,40 +39,47 @@ function Login() {
 	// 	console.log({ register });
 	// 	// TODO: implement login logic
 	// };
-	const redirect = (roleId) => {
-		const role = fetchRole(roleId)
-		const roleName = role.data?.roleName
-		switch (roleId) {
-			case 1:
-			  // code to be executed if expression === value1
+	const redirect = async (roleId) => {
+		try {
+			console.log(roleId);
+		  const response = await fetchRole(roleId);
+		  console.log(response);
+		  const roleName = response.role_name.toLowerCase()
+		  switch (roleName) {
+			  case "project leader":
+				  navigate("/project-leader");
+				break;
+  
+			  case "project manager":
+				  navigate("/project-manager");
+				break;
+  
+			  case "admin":
+				  navigate("/admin");
 			  break;
-			case 2:
-			  // code to be executed if expression === value2
+  
+			  case "collaborator":
+				  navigate("/collaborator");
 			  break;
-			case 3:
-			// code to be executed if expression === value2
-			break;
-
-			case 4:
-			// code to be executed if expression === value2
-			break;
-
-			case 5:
-			// code to be executed if expression === value2
-			break;
-			
-			default:
-			  // code to be executed if none of the above cases are true
-		  }
+  
+			  
+			  default:
+				// code to be executed if none of the above cases are true
+			}
+		} catch (error) {
+		  console.error(error);
+		}
 	}
+
 
 	const onSubmit = async (inputs) => {
 		console.log("try to submit");
 		const { data, error } = await login(inputs);
+		console.log({data});
 
 		if (data) {
 			JWTToken.store(data.token);
-			return navigate("/home");
+			return redirect(data.user_role_id)
 		}
 		if (error || !data) {
 			setErr(error);
