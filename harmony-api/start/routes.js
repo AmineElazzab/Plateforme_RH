@@ -21,7 +21,7 @@ Route.group(() => {
 Route.group(() => {
   Route.post("roles", "RoleController.store")
     .validator("RoleRequest")
-    .middleware(["auth:jwt", "checkUserRolePermissions:Administrator"]);
+    // .middleware(["auth:jwt", "checkUserRolePermissions:Administrator"]);
 
   Route.get("roles", "RoleController.index").middleware([
     "auth:jwt",
@@ -62,7 +62,7 @@ Route.group(() => {
   Route.get("users", "UserController.index");
   Route.post("users/assign", "UserController.assignProject");
   Route.get("users/:user_id/projects", "UserController.getUserWithProjects");
-  Route.delete("users/projects", "UserController.deleteProject");
+  // Route.delete("users/projects", "UserController.deleteProject");
   // Route.put("users/:user_id/projects", "UserController.updateProject");
 }).prefix("api");
 
