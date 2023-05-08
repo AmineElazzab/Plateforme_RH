@@ -35,8 +35,8 @@ class UserController {
       project_id,
       user_id,
     });
-
-    return response.json(projectUser);
+    const user = await User.find(user_id);
+    return response.json({ projectUser, user });
   }
 
   async getUserWithProjects({ params, response }) {
@@ -44,18 +44,19 @@ class UserController {
       const user = await User.query()
         .where("user_id", params.user_id)
         .with("projects")
-        .fetch();
-      return response.json(user);
+        .firstOrFail();
+      const projectCount = await user.projects().getCount();
+      return response.json({ user, projectCount });
     } catch (error) {
-      return response.status(500).send({
-        error:
-          "There was a problem retrieving the user, please try again later.",
-      });
+      console.log(error),
+        response.status(500).send({
+          error:
+            "There was a problem retrieving the user, please try again later.",
+        });
     }
   }
 
   // update the project assigned to a user
-  
 }
 
 module.exports = UserController;
