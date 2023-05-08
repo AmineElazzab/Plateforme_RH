@@ -5,8 +5,10 @@
   "description": "The fullstack application boilerplate for Adonisjs",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "test": "node ace test"
+    "start": "adonis serve --dev",
+    "test": "node ace test",
+    "db:dev:up": "docker-compose up -d",
+    "seed": "node ace db:seed"
   },
   "keywords": [
     "adonisjs",

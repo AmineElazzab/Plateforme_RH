@@ -21,7 +21,7 @@ Route.group(() => {
 Route.group(() => {
   Route.post("roles", "RoleController.store")
     .validator("RoleRequest")
-    .middleware(["auth:jwt", "checkUserRolePermissions:Administrator"]);
+    // .middleware(["auth:jwt", "checkUserRolePermissions:Administrator"]);
 
   Route.get("roles", "RoleController.index").middleware([
     "auth:jwt",
