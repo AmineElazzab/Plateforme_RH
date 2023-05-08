@@ -64,9 +64,12 @@ class UserController {
       .where("user_id", user_id)
       .delete();
     const user = await User.find(user_id);
+    user.user_workload -= 30;
+    await user.save();
     return response.json({ projectUser, user });
   }
 
+  // get user with projects
   async getUserWithProjects({ params, response }) {
     try {
       const user = await User.query()
