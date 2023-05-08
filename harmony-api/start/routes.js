@@ -58,8 +58,7 @@ Route.group(() => {
   Route.get("users", "UserController.index");
   Route.post("users/assign", "UserController.assignProject");
   Route.get("users/:user_id/projects", "UserController.getUserWithProjects");
-  Route.post("user/remove","UserController.removeproject" )
-  // Route.delete("users/projects", "UserController.deleteProject");
+  Route.delete("users/projects", "UserController.deleteProject");
   // Route.put("users/:user_id/projects", "UserController.updateProject");
 }).prefix("api");
 
@@ -125,4 +124,19 @@ Route.group(() => {
 //Suggestion routes
 Route.group(() => {
   Route.post("suggestion", "SuggestionController.sendSuggestionEmail");
+}).prefix("api");
+
+//Training routes
+Route.group(() => {
+  Route.post("training", "TrainingController.store").validator(
+    "CreateTraining"
+  );
+  Route.get("trainings", "TrainingController.index");
+  Route.get("training/:training_id", "TrainingController.show");
+  Route.put(
+    "updateTraining/:training_id",
+    "TrainingController.update"
+  ).validator("UpdateTraining");
+  Route.delete("deleteTraining/:training_id", "TrainingController.destroy");
+  Route.post("training/user", "TrainingController.assingTraining");
 }).prefix("api");
