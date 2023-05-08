@@ -39,6 +39,34 @@ class UserController {
     return response.json({ projectUser, user });
   }
 
+  // delete project from a user
+  async deleteProject({ request, response }) {
+    const { project_id, user_id } = request.all();
+    const project = await Project.find(project_id);
+    if (!project) {
+      return response.status(404).send({
+        error: "This project does not exist.",
+      });
+    }
+    // check if that project is already assigned to that user
+    const projectUserExists = await Project_User.query()
+      .where("project_id", project_id)
+      .where("user_id", user_id)
+      .fetch();
+    if (projectUserExists.rows.length === 0) {
+      return response.status(404).send({
+        error: "This project is not assigned to that user",
+      });
+    }
+
+    const projectUser = await Project_User.query()
+      .where("project_id", project_id)
+      .where("user_id", user_id)
+      .delete();
+    const user = await User.find(user_id);
+    return response.json({ projectUser, user });
+  }
+
   async getUserWithProjects({ params, response }) {
     try {
       const user = await User.query()
@@ -55,8 +83,6 @@ class UserController {
         });
     }
   }
-
-  // update the project assigned to a user
 }
 
 module.exports = UserController;
