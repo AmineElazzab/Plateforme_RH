@@ -58,6 +58,7 @@ Route.group(() => {
   Route.get("users", "UserController.index");
   Route.post("users/assign", "UserController.assignProject");
   Route.get("users/:user_id/projects", "UserController.getUserWithProjects");
+  Route.post("user/remove","UserController.removeproject" )
   // Route.delete("users/projects", "UserController.deleteProject");
   // Route.put("users/:user_id/projects", "UserController.updateProject");
 }).prefix("api");
