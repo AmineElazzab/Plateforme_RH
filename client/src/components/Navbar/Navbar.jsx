@@ -94,7 +94,7 @@ function Navbar() {
     //   </nav>
     // </div>
     <div>
-      <nav className="fixed top-0 z-50 w-[83%] h-[106px] bg-white  ml-[255px] items-center">
+      <nav className="fixed top-0 z-50 w-[88%] h-[106px] bg-white ml-[255px] items-center">
         <div className="px-3 py-3 lg:px-5 lg:pl-3">
           <div className="flex items-center justify-end">
             <div className="flex items-center">
