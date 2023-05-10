@@ -12,9 +12,8 @@ function Sidebar() {
     <div>
       <aside
         id="logo-sidebar"
-        className="fixed top-0 left-0 z-40 w-64 h-full   transition-transform -translate-x-full bg-white  sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
-        aria-label="Sidebar"
-      >
+        className="fixed top-0 left-0 z-40 w-64 h-full transition-transform -translate-x-full bg-white  sm:translate-x-0 "
+        aria-label="Sidebar">
         <a href="#">
           <div className="flex ml-[74px] mt-[15px]">
             <img className="w-[98px] h-[97px] " src={Logo} alt="logo" />
@@ -25,8 +24,7 @@ function Sidebar() {
             <li>
               <a
                 href="#"
-                className="flex items-center p-2 not-italic font-semibold text-sm leading-5 mt-[39px] ml-[30px]"
-              >
+                className="flex items-center p-2 not-italic rounded-lg font-semibold text-sm leading-5 mt-[39px] ml-[30px] hover:rounded-lg hover:bg-blue-700 hover:duration-300 hover:text-white">
                 <img
                   className="w-[24px] h-[24px] ml-4"
                   src={Accueil}
@@ -38,10 +36,9 @@ function Sidebar() {
             <li>
               <a
                 href="#"
-                className="flex items-center p-2 not-italic font-semibold text-sm leading-5 mt-[39px] ml-[30px]  hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
+                className="flex items-center p-2 not-italic  rounded-lg font-semibold text-sm leading-5 mt-[39px] ml-[30px] hover:rounded-lg hover:bg-blue-700 hover:duration-300 hover:text-white">
                 <img
-                  className="w-[24px] h-[24px] ml-4"
+                  className="w-[24px] h-[24px] ml-4  "
                   src={Projects}
                   alt="Projects"
                 />
@@ -51,8 +48,7 @@ function Sidebar() {
             <li>
               <a
                 href="#"
-                className="flex items-center p-2 not-italic font-semibold text-sm leading-5 mt-[39px] ml-[30px]"
-              >
+                className="flex items-center p-2 not-italic rounded-lg font-semibold text-sm leading-5 mt-[39px] ml-[30px] hover:rounded-lg hover:bg-blue-700 hover:duration-300 hover:text-white ">
                 <img
                   className="w-[24px] h-[24px] ml-4"
                   src={Tasks}
@@ -64,8 +60,7 @@ function Sidebar() {
             <li>
               <a
                 href="#"
-                className="flex items-center p-2 not-italic font-semibold text-sm leading-5 mt-[39px] ml-[30px]"
-              >
+                className="flex items-center p-2 not-italic rounded-lg font-semibold text-sm leading-5 mt-[39px] ml-[30px] hover:rounded-lg hover:bg-blue-700 hover:duration-300 hover:text-white">
                 <img
                   className="w-[24px] h-[24px] ml-4"
                   src={Repports}
@@ -77,8 +72,7 @@ function Sidebar() {
             <li>
               <a
                 href="#"
-                className="flex items-center p-2 not-italic font-semibold text-sm leading-5 mt-[39px] ml-[30px]"
-              >
+                className="flex items-center p-2 not-italic rounded-lg font-semibold text-sm leading-5 mt-[39px] ml-[30px] hover:rounded-lg hover:bg-blue-700 hover:duration-300 hover:text-white">
                 <img
                   className="w-[24px] h-[24px] ml-4"
                   src={Utilisateurs}
@@ -90,10 +84,9 @@ function Sidebar() {
             <li>
               <a
                 href="#"
-                className="flex items-center p-2 not-italic font-semibold text-sm leading-5 mt-[39px] ml-[30px]"
-              >
+                className="flex items-center p-2 not-italic rounded-lg font-semibold text-sm leading-5 mt-[39px] ml-[30px] hover:rounded-lg hover:bg-blue-700 hover:duration-300 hover:text-white">
                 <img
-                  className="w-[24px] h-[24px] ml-4"
+                  className="w-[24px] h-[24px] ml-4 "
                   src={Parametres}
                   alt="Parametres"
                 />
