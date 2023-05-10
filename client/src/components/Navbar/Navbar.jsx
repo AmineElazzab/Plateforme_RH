@@ -1,8 +1,8 @@
 import React from "react";
 import Logo from "../../assets/img/logo.svg";
 import Notification from "../../assets/icons/notification.svg";
-import Agenda from "../../assets/icons/agenda.svg";
-import Message from "../../assets/icons/message.svg";
+import Agenda from "../../assets/icons/Aganda.svg";
+import Message from "../../assets/icons/Message.svg";
 import Searchbar from "../Search/Search";
 function Navbar() {
   return (
