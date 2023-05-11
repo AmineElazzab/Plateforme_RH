@@ -11,14 +11,15 @@ function Utilisateurs() {
     <>
       <Navbar />
       <Sidebar />
-      <div className=" sm:ml-64 ">
-        <div className="pl-4 pt-4 pb-4 rounded-tl-3xl mt-[106px] bg-[#F0F2F8] h-[918px]">
-          <div className=" absolute ml-[38px] mt-[40px]">
+      <div className=" sm:ml-64 overflow-x-hidden">
+        <div className="pl-4 pt-4 pb-4 rounded-tl-3xl bg-[#F0F2F8] h-screen">
+          <div className=" relative ml-[38px] mt-[146px]">
             <p className="text-[#0B2585] font-sans font-bold text-4xl leading-[48px]">
               Projects
             </p>
           </div>
           <div className="flex flex-row flex-wrap gap-[31px]">
+       
             <div className="relative h-[207px] w-[351px] left-[38px] top-[173px] bg-[#FFFFFF] shadow-md rounded-[10px] ">
               <h6 className="absolute left-[26px] top-[26px] right-[145px] bottom-[158px] font-sans text-[18px] leading-[24px] font-bold text-[#2D2B26]">
                 Design SAM website

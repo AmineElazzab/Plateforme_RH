@@ -19,7 +19,7 @@ function Sidebar() {
             <img className="w-[98px] h-[97px] " src={Logo} alt="logo" />
           </div>
         </a>
-        <div className="h-screen px-3 pb-4 overflow-y-auto bg-white mt-[20px]">
+        <div className=" h-screen px-3 pb-4 overflow-y-auto bg-white mt-[20px]">
           <ul className="space-y-2 font-medium">
             <li>
               <a
