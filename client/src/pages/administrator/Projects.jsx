@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
-import Button from "../../components/Buttons/Button";
+import Button from "../../components/Buttons/ButtonAddProject";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Avatar, AvatarGroup } from "@mui/material";
 import TuneIcon from "@mui/icons-material/Tune";
