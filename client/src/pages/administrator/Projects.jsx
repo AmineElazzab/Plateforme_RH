@@ -1,14 +1,15 @@
 import React from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
-import Button from "../../components/Buttons/Button";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { Avatar, AvatarGroup } from "@mui/material";
 import TuneIcon from "@mui/icons-material/Tune";
 // import user from "../../assets/img/user.png";
 import Date from "../../assets/icons/Date.svg";
+import BasicModal from "../../components/Modal/AddProjectModal";
+import Filter from "../../components/Modal/Filter";
 
-function Utilisateurs() {
+function Projects() {
   return (
     <>
       <Navbar />
@@ -22,10 +23,8 @@ function Utilisateurs() {
                 Projects
               </p>
               <div className="flex gap-[5px]">
-                <Button />
-                <button className="flex items-center justify-center w-10 h-10 sm:w-[45px] sm:h-[45px] rounded-[10px] bg-[#0B2585] hover:bg-blue-800 duration-300 focus:ring-4 focus:ring-blue-300">
-                  <TuneIcon className="text-white" />
-                </button>
+                <BasicModal />
+                <Filter />
               </div>
             </div>
           </div>
@@ -33,7 +32,7 @@ function Utilisateurs() {
 
         <div className="flex flex-row justify-evenly flex-wrap gap-[31px] ">
           <div className="relative h-[207px] w-[351px] top-[173px] bg-[#FFFFFF] shadow-md rounded-[10px] ">
-            <h6 className="absolute pl-[26px] pt-[26px] pr-[145px] pb-[158px] font-sans text-[18px] leading-[24px] font-bold text-[#2D2B26]">
+            <h6 className="w-[300px] absolute ml-[26px] mt-[26px] mr-[145px] mb-[158px] font-sans text-[18px] leading-[24px] font-bold text-[#2D2B26]">
               Design SAM website
             </h6>
             <div className="absolute py-[33px] pr-[347px] ">
@@ -42,8 +41,7 @@ function Utilisateurs() {
                 height="141"
                 viewBox="0 0 4 141"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg%22%3E"
-              >
+                xmlns="http://www.w3.org/2000/svg%22%3E">
                 <rect width="4" height="141" fill="#0B2585" />
               </svg>
             </div>
@@ -70,7 +68,7 @@ function Utilisateurs() {
           </div>
 
           <div className="relative h-[207px] w-[351px] top-[173px] bg-[#FFFFFF] shadow-md rounded-[10px] ">
-            <h6 className="absolute pl-[26px] pt-[26px] pr-[145px] pb-[158px] font-sans text-[18px] leading-[24px] font-bold text-[#2D2B26]">
+            <h6 className="w-[300px] absolute ml-[26px] mt-[26px] mr-[145px] mb-[158px] font-sans text-[18px] leading-[24px] font-bold text-[#2D2B26]">
               UI UX (SAM Mobile App)
             </h6>
             <div className="absolute pt-[33px] pr-[347px] pb-[33px] ">
@@ -79,8 +77,7 @@ function Utilisateurs() {
                 height="141"
                 viewBox="0 0 4 141"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg%22%3E"
-              >
+                xmlns="http://www.w3.org/2000/svg%22%3E">
                 <rect width="4" height="141" fill="#0B2585" />
               </svg>
             </div>
@@ -107,7 +104,7 @@ function Utilisateurs() {
           </div>
 
           <div className="relative h-[207px] w-[351px] top-[173px] bg-[#FFFFFF] shadow-md rounded-[10px] ">
-            <h6 className="absolute left-[26px] top-[26px] right-[145px] bottom-[158px] font-sans text-[18px] leading-[24px] font-bold text-[#2D2B26]">
+            <h6 className="w-[300px] absolute ml-[26px] mt-[26px] mr-[145px] mb-[158px] font-sans text-[18px] leading-[24px] font-bold text-[#2D2B26]">
               Development de website SAM project
             </h6>
             <div className="absolute pt-[33px] pr-[347px] pb-[33px] ">
@@ -116,8 +113,7 @@ function Utilisateurs() {
                 height="141"
                 viewBox="0 0 4 141"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg%22%3E"
-              >
+                xmlns="http://www.w3.org/2000/svg%22%3E">
                 <rect width="4" height="141" fill="#0B2585" />
               </svg>
             </div>
@@ -144,7 +140,7 @@ function Utilisateurs() {
           </div>
 
           <div className="relative h-[207px] w-[351px] top-[173px] bg-[#FFFFFF] shadow-md rounded-[10px] ">
-            <h6 className="absolute pl-[26px] pt-[26px] pr-[145px] pb-[158px] font-sans text-[18px] leading-[24px] font-bold text-[#2D2B26]">
+            <h6 className="w-[300px] absolute ml-[26px] mt-[26px] mr-[145px] mb-[158px] font-sans text-[18px] leading-[24px] font-bold text-[#2D2B26]">
               Design SAM website
             </h6>
             <div className="absolute pt-[33px] pr-[347px] pb-[33px] ">
@@ -153,8 +149,7 @@ function Utilisateurs() {
                 height="141"
                 viewBox="0 0 4 141"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg%22%3E"
-              >
+                xmlns="http://www.w3.org/2000/svg%22%3E">
                 <rect width="4" height="141" fill="#0B2585" />
               </svg>
             </div>
@@ -181,7 +176,7 @@ function Utilisateurs() {
           </div>
 
           <div className="relative h-[207px] w-[351px] top-[173px] bg-[#FFFFFF] shadow-md rounded-[10px] ">
-            <h6 className="absolute pl-[26px] pt-[26px] pr-[145px] pb-[158px] font-sans text-[18px] leading-[24px] font-bold text-[#2D2B26]">
+            <h6 className="w-[300px] absolute ml-[26px] mt-[26px] mr-[145px] mb-[158px] font-sans text-[18px] leading-[24px] font-bold text-[#2D2B26]">
               UI UX (SAM Mobile App)
             </h6>
             <div className="absolute pt-[33px] pr-[347px] pb-[33px] ">
@@ -190,8 +185,7 @@ function Utilisateurs() {
                 height="141"
                 viewBox="0 0 4 141"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg%22%3E"
-              >
+                xmlns="http://www.w3.org/2000/svg%22%3E">
                 <rect width="4" height="141" fill="#0B2585" />
               </svg>
             </div>
@@ -227,7 +221,7 @@ function Utilisateurs() {
           </div>
 
           <div className="relative h-[207px] w-[351px] top-[173px] bg-[#FFFFFF] shadow-md rounded-[10px] ">
-            <h6 className="absolute pl-[26px] pt-[26px] pr-[145px] font-sans text-[18px] leading-[24px] font-bold text-[#2D2B26]">
+            <h6 className="w-[300px] absolute ml-[26px] mt-[26px] mr-[145px] mb-[158px] font-sans text-[18px] leading-[24px] font-bold text-[#2D2B26]">
               Design SAM website
             </h6>
             <div className="absolute pt-[33px] pr-[347px] pb-[33px] ">
@@ -236,8 +230,7 @@ function Utilisateurs() {
                 height="141"
                 viewBox="0 0 4 141"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg%22%3E"
-              >
+                xmlns="http://www.w3.org/2000/svg%22%3E">
                 <rect width="4" height="141" fill="#0B2585" />
               </svg>
             </div>
@@ -264,7 +257,7 @@ function Utilisateurs() {
           </div>
 
           <div className="relative h-[207px] w-[351px] top-[173px] bg-[#FFFFFF] shadow-md rounded-[10px] ">
-            <h6 className="absolute pl-[26px] pt-[26px] pr-[145px] pb-[158px] font-sans text-[18px] leading-[24px] font-bold text-[#2D2B26]">
+            <h6 className="w-[300px] absolute ml-[26px] mt-[26px] mr-[145px] mb-[158px] font-sans text-[18px] leading-[24px] font-bold text-[#2D2B26]">
               Design SAM website
             </h6>
             <div className="absolute pt-[33px] pr-[347px] pb-[33px] ">
@@ -273,8 +266,7 @@ function Utilisateurs() {
                 height="141"
                 viewBox="0 0 4 141"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg%22%3E"
-              >
+                xmlns="http://www.w3.org/2000/svg%22%3E">
                 <rect width="4" height="141" fill="#0B2585" />
               </svg>
             </div>
@@ -310,7 +302,7 @@ function Utilisateurs() {
           </div>
 
           <div className="relative h-[207px] w-[351px] top-[173px] bg-[#FFFFFF] shadow-md rounded-[10px] ">
-            <h6 className="absolute pl-[26px] pt-[26px] pr-[145px] pb-[158px] font-sans text-[18px] leading-[24px] font-bold text-[#2D2B26]">
+            <h6 className="w-[300px] absolute ml-[26px] mt-[26px] mr-[145px] mb-[158px] font-sans text-[18px] leading-[24px] font-bold text-[#2D2B26]">
               Development de website SAM project
             </h6>
             <div className="absolute pt-[33px] pr-[347px] pb-[33px] ">
@@ -319,8 +311,7 @@ function Utilisateurs() {
                 height="141"
                 viewBox="0 0 4 141"
                 fill="none"
-                xmlns="http://www.w3.org/2000/svg%22%3E"
-              >
+                xmlns="http://www.w3.org/2000/svg%22%3E">
                 <rect width="4" height="141" fill="#0B2585" />
               </svg>
             </div>
@@ -360,4 +351,4 @@ function Utilisateurs() {
   );
 }
 
-export default Utilisateurs;
+export default Projects;
