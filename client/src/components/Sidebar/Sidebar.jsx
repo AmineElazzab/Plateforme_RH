@@ -5,7 +5,6 @@ import Tasks from "../../assets/icons/Tasks.svg";
 import Repports from "../../assets/icons/Repports.svg";
 import Utilisateurs from "../../assets/icons/Utilisateurs.svg";
 import Parametres from "../../assets/icons/Parametres.svg";
-import Logo from "../../assets/img/logo.svg";
 
 function Sidebar() {
   return (
@@ -14,12 +13,7 @@ function Sidebar() {
         id="logo-sidebar"
         className="fixed top-0 left-0 z-40 w-64 h-full transition-transform -translate-x-full bg-white  sm:translate-x-0 "
         aria-label="Sidebar">
-        <a href="#">
-          <div className="flex ml-[74px] mt-[15px]">
-            <img className="w-[98px] h-[97px] " src={Logo} alt="logo" />
-          </div>
-        </a>
-        <div className="h-screen px-3 pb-4 overflow-y-auto bg-white mt-[20px]">
+        <div className=" h-screen px-3 pb-4 overflow-y-auto bg-white mt-[160px]">
           <ul className="space-y-2 font-medium">
             <li>
               <a

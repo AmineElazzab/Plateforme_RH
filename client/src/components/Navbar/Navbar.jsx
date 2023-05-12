@@ -94,9 +94,14 @@ function Navbar() {
     //   </nav>
     // </div>
     <div>
-      <nav className="fixed top-0 z-50 w-[88%] h-[106px] bg-white ml-[255px] items-center">
-        <div className="px-3 py-3 lg:px-5 lg:pl-3">
-          <div className="flex items-center justify-end">
+      <nav className="fixed top-0 left-0 right-0 bottom-0 z-50 w-screen h-[106px]  items-center">
+        <div className="px-3 lg:px-5 lg:pl-3 bg-white">
+          <div className="flex items-center justify-between">
+            <a href="#">
+              <div className=" ml-[74px] mt-[15px] md:block">
+                <img className="w-[98px] h-[97px] " src={Logo} alt="logo" />
+              </div>
+            </a>
             <div className="flex items-center">
               <div className="flex items-center ml-3">
                 <div className="flex items-center justify-center ml-5 ">
