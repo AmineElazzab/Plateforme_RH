@@ -7,8 +7,8 @@ import { Avatar, AvatarGroup } from "@mui/material";
 import Date from "../../assets/icons/Date.svg";
 import Copie from "../../assets/icons/Copie.svg";
 import Pagination from "@mui/material/Pagination";
-import Button from "../../components/Buttons/ButtonAddUser";
-import TuneIcon from "@mui/icons-material/Tune";
+import BasicModal from "../../components/Modal/AddUserModal";
+import Filter from "../../components/Modal/Filter";
 
 function Utilisateurs() {
   return (
@@ -23,10 +23,9 @@ function Utilisateurs() {
                 Users
               </p>
               <div className="flex gap-[5px]">
-                <Button />
-                <button className="flex items-center justify-center w-10 h-10 sm:w-[45px] sm:h-[45px] rounded-[10px] bg-[#0B2585] hover:bg-blue-800 duration-300 focus:ring-4 focus:ring-blue-300">
-                  <TuneIcon className="text-white" />
-                </button>
+                  
+                <BasicModal />
+                <Filter />
               </div>
             </div>
           </div>
@@ -68,23 +67,12 @@ function Utilisateurs() {
           </div>
 
           <div className="relative h-[225px] w-[341px]  top-[173px] bg-[#FFFFFF] shadow-md rounded-[10px] ">
-            <h6 className="absolute left-[100px] top-[27px] right-[13px] bottom-[171px] font-sans not-italic font-semibold text-xl leading-7 text-[#2D2B26] w-auto">
+            <h6 className="absolute pl-[100px] pt-[27px] pr-[13px] pb-[171px] font-sans not-italic font-semibold text-xl leading-7 text-[#2D2B26] w-auto">
               Mohamed Reda
             </h6>
-            <h6 className="absolute left-[100px] top-[56px] right-[13px] bottom-[150px] font-sans not-italic font-thin text-sm leading-5 text-gray-700 ">
+            <h6 className="absolute pl-[100px] pt-[56px] pr-[13px] pb-[150px] font-sans not-italic font-thin text-sm leading-5 text-gray-700 ">
               UI UX Designer
             </h6>
-            <div className="absolute pt-[33px] pr-[347px] pb-[33px] ">
-              <svg
-                width="4"
-                height="141"
-                viewBox="0 0 4 141"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg%22%3E"
-              >
-                <rect width="4" height="141" fill="#0B2585" />
-              </svg>
-            </div>
             <div className="absolute pl-[18px] pt-[16px] pr-[255px] pb-[141px] ">
               <Avatar alt="Remy Sharp" src="" sx={{ width: 68, height: 68 }} />
             </div>
@@ -113,23 +101,12 @@ function Utilisateurs() {
           </div>
 
           <div className="relative h-[225px] w-[341px]  top-[173px] bg-[#FFFFFF] shadow-md rounded-[10px] ">
-            <h6 className="absolute left-[100px] top-[27px] right-[13px] bottom-[171px] font-sans not-italic font-semibold text-xl leading-7 text-[#2D2B26] w-auto">
+            <h6 className="absolute pl-[100px] pt-[27px] pr-[13px] pb-[171px] font-sans not-italic font-semibold text-xl leading-7 text-[#2D2B26] w-auto">
               Mohamed Reda
             </h6>
-            <h6 className="absolute left-[100px] top-[56px] right-[13px] bottom-[150px] font-sans not-italic font-thin text-sm leading-5 text-gray-700 ">
+            <h6 className="absolute pl-[100px] pt-[56px] pr-[13px] pb-[150px] font-sans not-italic font-thin text-sm leading-5 text-gray-700 ">
               UI UX Designer
             </h6>
-            <div className="absolute pt-[33px] pr-[347px] pb-[33px] ">
-              <svg
-                width="4"
-                height="141"
-                viewBox="0 0 4 141"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg%22%3E"
-              >
-                <rect width="4" height="141" fill="#0B2585" />
-              </svg>
-            </div>
             <div className="absolute pl-[18px] pt-[16px] pr-[255px] pb-[141px] ">
               <Avatar alt="Remy Sharp" src="" sx={{ width: 68, height: 68 }} />
             </div>
@@ -158,23 +135,12 @@ function Utilisateurs() {
           </div>
 
           <div className="relative h-[225px] w-[341px]  top-[173px] bg-[#FFFFFF] shadow-md rounded-[10px] ">
-            <h6 className="absolute left-[100px] top-[27px] right-[13px] bottom-[171px] font-sans not-italic font-semibold text-xl leading-7 text-[#2D2B26] w-auto">
+            <h6 className="absolute pl-[100px] pt-[27px] pr-[13px] pb-[171px] font-sans not-italic font-semibold text-xl leading-7 text-[#2D2B26] w-auto">
               Mohamed Reda
             </h6>
-            <h6 className="absolute left-[100px] top-[56px] right-[13px] bottom-[150px] font-sans not-italic font-thin text-sm leading-5 text-gray-700 ">
+            <h6 className="absolute pl-[100px] pt-[56px] pr-[13px] pb-[150px] font-sans not-italic font-thin text-sm leading-5 text-gray-700 ">
               UI UX Designer
             </h6>
-            <div className="absolute pt-[33px] pr-[347px] pb-[33px] ">
-              <svg
-                width="4"
-                height="141"
-                viewBox="0 0 4 141"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg%22%3E"
-              >
-                <rect width="4" height="141" fill="#0B2585" />
-              </svg>
-            </div>
             <div className="absolute pl-[18px] pt-[16px] pr-[255px] pb-[141px] ">
               <Avatar alt="Remy Sharp" src="" sx={{ width: 68, height: 68 }} />
             </div>
@@ -203,23 +169,12 @@ function Utilisateurs() {
           </div>
 
           <div className="relative h-[225px] w-[341px]  top-[173px] bg-[#FFFFFF] shadow-md rounded-[10px] ">
-            <h6 className="absolute left-[100px] top-[27px] right-[13px] bottom-[171px] font-sans not-italic font-semibold text-xl leading-7 text-[#2D2B26] w-auto">
+            <h6 className="absolute pl-[100px] pt-[27px] pr-[13px] pb-[171px] font-sans not-italic font-semibold text-xl leading-7 text-[#2D2B26] w-auto">
               Mohamed Reda
             </h6>
-            <h6 className="absolute left-[100px] top-[56px] right-[13px] bottom-[150px] font-sans not-italic font-thin text-sm leading-5 text-gray-700 ">
+            <h6 className="absolute pl-[100px] pt-[56px] pr-[13px] pb-[150px] font-sans not-italic font-thin text-sm leading-5 text-gray-700 ">
               UI UX Designer
             </h6>
-            <div className="absolute pt-[33px] pr-[347px] pb-[33px] ">
-              <svg
-                width="4"
-                height="141"
-                viewBox="0 0 4 141"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg%22%3E"
-              >
-                <rect width="4" height="141" fill="#0B2585" />
-              </svg>
-            </div>
             <div className="absolute pl-[18px] pt-[16px] pr-[255px] pb-[141px] ">
               <Avatar alt="Remy Sharp" src="" sx={{ width: 68, height: 68 }} />
             </div>
@@ -248,23 +203,12 @@ function Utilisateurs() {
           </div>
 
           <div className="relative h-[225px] w-[341px]  top-[173px] bg-[#FFFFFF] shadow-md rounded-[10px] ">
-            <h6 className="absolute left-[100px] top-[27px] right-[13px] bottom-[171px] font-sans not-italic font-semibold text-xl leading-7 text-[#2D2B26] w-auto">
+            <h6 className="absolute pl-[100px] pt-[27px] pr-[13px] pb-[171px] font-sans not-italic font-semibold text-xl leading-7 text-[#2D2B26] w-auto">
               Mohamed Reda
             </h6>
-            <h6 className="absolute left-[100px] top-[56px] right-[13px] bottom-[150px] font-sans not-italic font-thin text-sm leading-5 text-gray-700 ">
+            <h6 className="absolute pl-[100px] pt-[56px] pr-[13px] pb-[150px] font-sans not-italic font-thin text-sm leading-5 text-gray-700 ">
               UI UX Designer
             </h6>
-            <div className="absolute pt-[33px] pr-[347px] pb-[33px] ">
-              <svg
-                width="4"
-                height="141"
-                viewBox="0 0 4 141"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg%22%3E"
-              >
-                <rect width="4" height="141" fill="#0B2585" />
-              </svg>
-            </div>
             <div className="absolute pl-[18px] pt-[16px] pr-[255px] pb-[141px] ">
               <Avatar alt="Remy Sharp" src="" sx={{ width: 68, height: 68 }} />
             </div>
@@ -293,23 +237,12 @@ function Utilisateurs() {
           </div>
 
           <div className="relative h-[225px] w-[341px]  top-[173px] bg-[#FFFFFF] shadow-md rounded-[10px] ">
-            <h6 className="absolute left-[100px] top-[27px] right-[13px] bottom-[171px] font-sans not-italic font-semibold text-xl leading-7 text-[#2D2B26] w-auto">
+            <h6 className="absolute pl-[100px] pt-[27px] pr-[13px] pb-[171px] font-sans not-italic font-semibold text-xl leading-7 text-[#2D2B26] w-auto">
               Mohamed Reda
             </h6>
-            <h6 className="absolute left-[100px] top-[56px] right-[13px] bottom-[150px] font-sans not-italic font-thin text-sm leading-5 text-gray-700 ">
+            <h6 className="absolute pl-[100px] pt-[56px] pr-[13px] pb-[150px] font-sans not-italic font-thin text-sm leading-5 text-gray-700 ">
               UI UX Designer
             </h6>
-            <div className="absolute pt-[33px] pr-[347px] pb-[33px] ">
-              <svg
-                width="4"
-                height="141"
-                viewBox="0 0 4 141"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg%22%3E"
-              >
-                <rect width="4" height="141" fill="#0B2585" />
-              </svg>
-            </div>
             <div className="absolute pl-[18px] pt-[16px] pr-[255px] pb-[141px] ">
               <Avatar alt="Remy Sharp" src="" sx={{ width: 68, height: 68 }} />
             </div>
@@ -338,23 +271,12 @@ function Utilisateurs() {
           </div>
 
           <div className="relative h-[225px] w-[341px]  top-[173px] bg-[#FFFFFF] shadow-md rounded-[10px] ">
-            <h6 className="absolute left-[100px] top-[27px] right-[13px] bottom-[171px] font-sans not-italic font-semibold text-xl leading-7 text-[#2D2B26] w-auto">
+            <h6 className="absolute pl-[100px] pt-[27px] pr-[13px] pb-[171px] font-sans not-italic font-semibold text-xl leading-7 text-[#2D2B26] w-auto">
               Mohamed Reda
             </h6>
-            <h6 className="absolute left-[100px] top-[56px] right-[13px] bottom-[150px] font-sans not-italic font-thin text-sm leading-5 text-gray-700 ">
+            <h6 className="absolute pl-[100px] pt-[56px] pr-[13px] pb-[150px] font-sans not-italic font-thin text-sm leading-5 text-gray-700 ">
               UI UX Designer
             </h6>
-            <div className="absolute pt-[33px] pr-[347px] pb-[33px] ">
-              <svg
-                width="4"
-                height="141"
-                viewBox="0 0 4 141"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg%22%3E"
-              >
-                <rect width="4" height="141" fill="#0B2585" />
-              </svg>
-            </div>
             <div className="absolute pl-[18px] pt-[16px] pr-[255px] pb-[141px] ">
               <Avatar alt="Remy Sharp" src="" sx={{ width: 68, height: 68 }} />
             </div>
