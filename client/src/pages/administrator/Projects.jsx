@@ -82,9 +82,9 @@ function Projects() {
             <h1>{JSON.stringify(getProjectsQuery.error)}</h1>
           </div>
         ) : (
-          <div className="flex flex-row justify-center flex-wrap gap-[31px] ">
+          <div className="relative flex flex-row justify-center flex-wrap gap-[31px] top-[173px]">
             {getProjectsQuery.data.map((project) => (
-              <div className="relative h-[207px] w-[351px] top-[173px] bg-[#FFFFFF] shadow-md rounded-[10px]  ">
+              <div className="relative h-[207px] w-[351px]  bg-[#FFFFFF] shadow-md rounded-[10px]  ">
                 <h6 className="w-[300px] absolute ml-[26px] mt-[26px] mr-[145px] mb-[158px] font-sans text-[18px] leading-[24px] font-bold text-[#2D2B26]">
                   {project.name}
                 </h6>
