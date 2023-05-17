@@ -19,9 +19,8 @@ Route.group(() => {
 
 // Role routes
 Route.group(() => {
-  Route.post("roles", "RoleController.store")
-    .validator("RoleRequest")
-    // .middleware(["auth:jwt", "checkUserRolePermissions:Administrator"]);
+  Route.post("roles", "RoleController.store").validator("RoleRequest");
+  // .middleware(["auth:jwt", "checkUserRolePermissions:Administrator"]);
 
   Route.get("roles", "RoleController.index").middleware([
     "auth:jwt",
@@ -62,6 +61,10 @@ Route.group(() => {
   Route.get("users", "UserController.index");
   Route.post("users/assign", "UserController.assignProject");
   Route.get("users/:user_id/projects", "UserController.getUserWithProjects");
+  Route.get("users/:user_id", "UserController.show").middleware([
+    "auth:jwt",
+    "checkUserRolePermissions:Administrator,Project Manager,Project Leader,Human Resources,Collaborator",
+  ]);
   // Route.delete("users/projects", "UserController.deleteProject");
   // Route.put("users/:user_id/projects", "UserController.updateProject");
 }).prefix("api");

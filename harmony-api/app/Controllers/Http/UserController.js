@@ -86,6 +86,20 @@ class UserController {
         });
     }
   }
+  async show({ params, response }) {
+    try {
+      const user = await User.query()
+        .where("user_id", params.user_id)
+        .firstOrFail();
+      return response.json({ user });
+    } catch (error) {
+      console.log(error),
+        response.status(500).send({
+          error:
+            "There was a problem retrieving the user, please try again later.",
+        });
+    }
+  }
 }
 
 module.exports = UserController;

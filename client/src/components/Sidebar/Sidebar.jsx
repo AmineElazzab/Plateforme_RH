@@ -5,6 +5,7 @@ import Tasks from "../../assets/icons/Tasks.svg";
 import Repports from "../../assets/icons/Repports.svg";
 import Utilisateurs from "../../assets/icons/Utilisateurs.svg";
 import Parametres from "../../assets/icons/Parametres.svg";
+import { Link } from "react-router-dom";
 
 function Sidebar() {
   return (
@@ -16,8 +17,8 @@ function Sidebar() {
         <div className=" h-screen px-3 pb-4 overflow-y-auto bg-white mt-[160px]">
           <ul className="space-y-2 font-medium">
             <li>
-              <a
-                href="#"
+              <Link
+                to="/collaborator"
                 className="flex items-center p-2 not-italic rounded-lg font-semibold text-sm leading-5 mt-[39px] ml-[30px] hover:rounded-lg hover:bg-blue-700 hover:duration-300 hover:text-white">
                 <img
                   className="w-[24px] h-[24px] ml-4"
@@ -25,11 +26,11 @@ function Sidebar() {
                   alt="Accueil"
                 />
                 <span className="ml-[25px]">Accueil</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/projects"
                 className="flex items-center p-2 not-italic  rounded-lg font-semibold text-sm leading-5 mt-[39px] ml-[30px] hover:rounded-lg hover:bg-blue-700 hover:duration-300 hover:text-white">
                 <img
                   className="w-[24px] h-[24px] ml-4  "
@@ -37,11 +38,11 @@ function Sidebar() {
                   alt="Projects"
                 />
                 <span className="ml-[25px]">Projects</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/tasks"
                 className="flex items-center p-2 not-italic rounded-lg font-semibold text-sm leading-5 mt-[39px] ml-[30px] hover:rounded-lg hover:bg-blue-700 hover:duration-300 hover:text-white ">
                 <img
                   className="w-[24px] h-[24px] ml-4"
@@ -49,11 +50,11 @@ function Sidebar() {
                   alt="Tasks"
                 />
                 <span className="ml-[25px]">Tasks</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/repports"
                 className="flex items-center p-2 not-italic rounded-lg font-semibold text-sm leading-5 mt-[39px] ml-[30px] hover:rounded-lg hover:bg-blue-700 hover:duration-300 hover:text-white">
                 <img
                   className="w-[24px] h-[24px] ml-4"
@@ -61,11 +62,11 @@ function Sidebar() {
                   alt="Repports"
                 />
                 <span className="ml-[25px]">Repports</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/users"
                 className="flex items-center p-2 not-italic rounded-lg font-semibold text-sm leading-5 mt-[39px] ml-[30px] hover:rounded-lg hover:bg-blue-700 hover:duration-300 hover:text-white">
                 <img
                   className="w-[24px] h-[24px] ml-4"
@@ -73,11 +74,11 @@ function Sidebar() {
                   alt="Utilisateurs"
                 />
                 <span className="ml-[25px]">Utilisateurs</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/settings"
                 className="flex items-center p-2 not-italic rounded-lg font-semibold text-sm leading-5 mt-[39px] ml-[30px] hover:rounded-lg hover:bg-blue-700 hover:duration-300 hover:text-white">
                 <img
                   className="w-[24px] h-[24px] ml-4 "
@@ -85,7 +86,7 @@ function Sidebar() {
                   alt="Parametres"
                 />
                 <span className="ml-[25px]">Paramètres </span>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

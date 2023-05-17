@@ -41,9 +41,9 @@ function Login() {
   // };
   const redirect = async (roleId) => {
     try {
-      console.log(roleId);
+      // console.log(roleId);
       const response = await fetchRole(roleId);
-      console.log(response);
+      // console.log(response);
       const roleName = response.role_name.toLowerCase();
       switch (roleName) {
         case "project leader":
@@ -55,7 +55,7 @@ function Login() {
           break;
 
         case "administrator":
-          navigate("/admin");
+          navigate("/projects");
           break;
 
         case "collaborator":
@@ -71,12 +71,13 @@ function Login() {
   };
 
   const onSubmit = async (inputs) => {
-    console.log("try to submit");
+    // console.log("try to submit");
     const { data, error } = await login(inputs);
-    console.log({ data });
+    // console.log({ data });
 
     if (data) {
       JWTToken.store(data.token);
+      localStorage.setItem("user_id", data.user_id);
       return redirect(data.user_role_id);
     }
     if (error || !data) {
@@ -92,8 +93,7 @@ function Login() {
           <div className="mb-4">
             <label
               className="block text-gray-700 font-bold mb-2"
-              htmlFor="email"
-            >
+              htmlFor="email">
               Email
             </label>
             <input
@@ -115,8 +115,7 @@ function Login() {
           <div className="mb-6">
             <label
               className="block text-gray-700 font-bold mb-2"
-              htmlFor="password"
-            >
+              htmlFor="password">
               Password
             </label>
             <input
