@@ -32,10 +32,6 @@ class CreateTraining {
   get validateAll() {
     return true;
   }
-
-  async authorize() {
-    return true;
-  }
 }
 
 module.exports = CreateTraining;

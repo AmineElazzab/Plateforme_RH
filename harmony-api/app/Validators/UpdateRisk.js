@@ -3,26 +3,17 @@
 class UpdtaeRisk {
   get rules() {
     return {
-      // validation rules
-      risk_name: "required",
-      risk_description: "required",
-      impact_description: "required",
-      impact_level: "required",
-      probability_level: "required",
-      criticality_level: "required",
-      mitigation_plan: "required",
+      impact_level: "number",
+      probability_level: "number",
+      criticality_level: "number",
     };
   }
 
   get messages() {
     return {
-      "risk_name.required": "You must provide a risk name.",
-      "risk_description.required": "You must provide a risk description.",
-      "impact_description.required": "You must provide a impact description.",
-      "impact_level.required": "You must provide a impact level.",
-      "probability_level.required": "You must provide a probability level.",
-      "criticality_level.required": "You must provide a criticality level.",
-      "mitigation_plan.required": "You must provide a mitigation plan.",
+      "impact_level.number": "Impact level must be a number.",
+      "probability_level.number": "Probability level must be a number.",
+      "criticality_level.number": "Criticality level must be a number.",
     };
   }
 
@@ -34,10 +25,6 @@ class UpdtaeRisk {
   }
 
   get validateAll() {
-    return true;
-  }
-
-  async authorize() {
     return true;
   }
 }

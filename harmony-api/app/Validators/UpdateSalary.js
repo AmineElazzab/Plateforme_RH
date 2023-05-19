@@ -3,19 +3,14 @@
 class UpdateSalary {
   get rules() {
     return {
-      // validation rules
-      salary_amount: "required|number",
-      salary_type: "required",
-      salary_incentives: "required|number",
+      salary_amount: "number",
+      salary_incentives: "number",
     };
   }
 
   get messages() {
     return {
-      "salary_amount.required": "You must provide a salary amount.",
       "salary_amount.number": "Salary amount must be a number.",
-      "salary_type.required": "You must provide a salary type.",
-      "salary_incentives.required": "You must provide a salary incentives.",
       "salary_incentives.number": "Salary incentives must be a number.",
     };
   }
@@ -28,10 +23,6 @@ class UpdateSalary {
   }
 
   get validateAll() {
-    return true;
-  }
-
-  async authorize() {
     return true;
   }
 }
