@@ -6,7 +6,7 @@
       "status": "In progress",
       "startDate": "2023-01-01",
       "endDate": "2023-05-31",
-      "progress" : "10%",
+      "progress": "10%",
       "assignedTo": [
         {
           "name": "John Doe",
@@ -24,7 +24,7 @@
       "status": "In progress",
       "startDate": "2023-01-01",
       "endDate": "2023-05-31",
-      "progress" : "10%",
+      "progress": "10%",
       "assignedTo": [
         {
           "name": "John Doe",
@@ -38,7 +38,7 @@
       "status": "In progress",
       "startDate": "2023-01-01",
       "endDate": "2023-05-31",
-      "progress" : "10%",
+      "progress": "10%",
       "assignedTo": [
         {
           "name": "John Doe",
