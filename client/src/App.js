@@ -24,7 +24,7 @@ function App() {
             </Protected>
           }
         />
-        <Route path="/utilisateurs" element={<Utilisateurs />} />
+        <Route path="/users" element={<Users />} />
         <Route path="/collaborator" element={<Collaborator />} />
         <Route path="/project-leader" element={<ProjectLeader />} />
         <Route path="/project-manager" element={<ProjectManager />} />
