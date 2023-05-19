@@ -8,13 +8,15 @@ class SalarySchema extends Schema {
     this.create("salaries", (table) => {
       table.increments("salary_id");
       table.integer("salary_amount").notNullable();
-      table.enu("salary_type", [
-        "monthly",
-        "weekly",
-        "biweekly",
-        "semi-monthly",
-        "hourly",
-      ]).notNullable();
+      table
+        .enu("salary_type", [
+          "monthly",
+          "weekly",
+          "biweekly",
+          "semi-monthly",
+          "hourly",
+        ])
+        .notNullable();
       table
         .integer("salary_user_id")
         .unsigned()
@@ -22,7 +24,7 @@ class SalarySchema extends Schema {
         .references("user_id")
         .inTable("users");
 
-        table.integer("salary_incentives").nullable();
+      table.integer("salary_incentives").nullable();
       table.integer("salary_total").notNullable();
       table.timestamps();
     });

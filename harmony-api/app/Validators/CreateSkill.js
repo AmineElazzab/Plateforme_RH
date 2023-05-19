@@ -3,10 +3,10 @@
 class CreateSkill {
   get rules() {
     return {
-      // validation rules
       skill_name: "required",
       skill_description: "required|max:200",
       skill_level: "required",
+      user_id: "required",
     };
   }
 
@@ -15,6 +15,7 @@ class CreateSkill {
       "skill_name.required": "You must provide a skill name.",
       "skill_description.required": "You must provide a skill description.",
       "skill_level.required": "You must provide a skill mastery.",
+      "user_id.required": "A user is required.",
     };
   }
 
@@ -26,10 +27,6 @@ class CreateSkill {
   }
 
   get validateAll() {
-    return true;
-  }
-
-  async authorize() {
     return true;
   }
 }

@@ -3,12 +3,11 @@
 class CreateProject {
   get rules() {
     return {
-      // validation rules
-      project_name: "required|project_name|unique:projects ",
+      project_name: "required|unique:projects",
       project_description: "required",
       project_priority: "required|number",
-      project_start_date: "required",
-      project_end_date: "required",
+      project_start_date: "required|date",
+      project_end_date: "required|date",
       project_type: "required",
     };
   }
@@ -21,6 +20,8 @@ class CreateProject {
       "project_priority.required": "You must provide a project priority.",
       "project_priority.number": "Project priority must be a number.",
       "project_start_date.required": "You must provide a project start date.",
+      "project_start_date.date": "Project start date must be a date.",
+      "project_end_date.date": "Project end date must be a date.",
       "project_end_date.required": "You must provide a project end date.",
       "project_type.required": "You must provide a project type.",
     };
@@ -34,10 +35,6 @@ class CreateProject {
   }
 
   get validateAll() {
-    return true;
-  }
-
-  async authorize() {
     return true;
   }
 }

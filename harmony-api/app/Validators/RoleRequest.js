@@ -1,7 +1,5 @@
 "use-strict";
 
-"use strict";
-
 class RoleRequest {
   get validateAll() {
     return true;

@@ -5,7 +5,7 @@ const Trainig_Collaborattor = use("App/Models/TrainingCollaborator");
 
 class TrainingController {
   //create training
-  async create({ request, response }) {
+  async store({ request, response }) {
     try {
       const training = await Training.create(
         request.only([
