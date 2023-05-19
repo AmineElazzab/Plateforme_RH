@@ -24,9 +24,7 @@ class CreateDepartement {
     return true;
   }
 
-  async authorize() {
-    return true;
-  }
+ 
 }
 
 module.exports = CreateDepartement;

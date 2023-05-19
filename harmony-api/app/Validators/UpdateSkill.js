@@ -3,18 +3,14 @@
 class UpdateSkill {
   get rules() {
     return {
-      // validation rules
-      skill_name: "required",
-      skill_description: "required|max:200",
-      skill_level: "required",
+      skill_description: "max:200",
     };
   }
 
   get messages() {
     return {
-      "skill_name.required": "You must provide a skill name.",
-      "skill_description.required": "You must provide a skill description.",
-      "skill_level.required": "You must provide a skill mastery.",
+      "skill_description.max":
+        "Skill description must be less than 200 characters.",
     };
   }
 
@@ -26,10 +22,6 @@ class UpdateSkill {
   }
 
   get validateAll() {
-    return true;
-  }
-
-  async authorize() {
     return true;
   }
 }
