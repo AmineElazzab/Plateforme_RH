@@ -4,6 +4,17 @@ const User = use("App/Models/User");
 const Project_User = use("App/Models/ProjectCollaborator");
 const Project = use("App/Models/Project");
 
+const { tmpdir } = require("os");
+const { join } = require("path");
+const cloudinary = require("cloudinary").v2;
+const cloudinaryConfig = require("../../../config/cloudinary");
+
+cloudinary.config({
+  cloud_name: cloudinaryConfig.cloud_name,
+  api_key: cloudinaryConfig.api_key,
+  api_secret: cloudinaryConfig.api_secret,
+});
+
 class UserController {
   async index({ request, response }) {
     const page = 1;
@@ -97,6 +108,72 @@ class UserController {
         response.status(500).send({
           error:
             "There was a problem retrieving the user, please try again later.",
+        });
+    }
+  }
+  // update user profile
+  async update({ params, request, response }) {
+    try {
+      const user = await User.find(params.user_id);
+      const {
+        user_fullname,
+        user_address,
+        user_phone,
+        email,
+        password,
+        user_deparement_id,
+        user_role_id,
+      } = request.only([
+        "user_fullname",
+        "user_address",
+        "user_phone",
+        "email",
+        "password",
+        "user_deparement_id",
+        "user_role_id",
+      ]);
+
+      // Upload user image to Cloudinary
+      const imageFile = request.file("user_image", {
+        types: ["image"],
+        size: "2mb",
+      });
+
+      if (imageFile) {
+        await imageFile.move(tmpdir(), {
+          name: `${new Date().getTime()}.${imageFile.subtype}`,
+          overwrite: true,
+        });
+
+        if (!imageFile.moved()) {
+          throw new Error("Failed to upload user image");
+        }
+
+        const result = await cloudinary.uploader.upload(
+          join(tmpdir(), imageFile.fileName),
+          {
+            folder: "user_images",
+          }
+        );
+
+        user.user_image = result.secure_url;
+        return response.json("User image updated successfully");
+      }
+
+      user.user_fullname = user_fullname;
+      user.user_address = user_address;
+      user.user_phone = user_phone;
+      user.email = email;
+      user.password = password;
+      user.user_deparement_id = user_deparement_id;
+      user.user_role_id = user_role_id;
+      await user.save();
+      return response.json("User updated successfully");
+    } catch (error) {
+      console.log(error),
+        response.status(500).send({
+          error:
+            "There was a problem updating the user, please try again later.",
         });
     }
   }
