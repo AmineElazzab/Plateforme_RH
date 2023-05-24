@@ -17,9 +17,13 @@ cloudinary.config({
 
 class UserController {
   async index({ request, response }) {
-    const page = 1;
-    const limit = 5;
-    const users = await User.query().paginate(page, limit);
+    const page = request.input("page", 1);
+    // const limit = 5;
+    const name = request.input("name", "");
+    const users = await User.query()
+      .where("user_fullname", "LIKE", `%${name}%`)
+      .paginate(page);
+
     return response.json(users);
   }
 
