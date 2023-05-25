@@ -1,9 +1,12 @@
 import { AxiosError } from "axios";
 import client from "../lib/client";
 
-export const login = async (body) => {
+export const login = async (email, password) => {
   try {
-    const { data } = await client.post("/auth/login", body);
+    const { data } = await client.post("/auth/login", {
+      email,
+      password,
+    });
     return { data, error: null };
   } catch (err) {
     let errorMessage;
