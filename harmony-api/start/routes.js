@@ -13,6 +13,9 @@ Route.group(() => {
   Route.post("update-password", "AuthController.updatePassword").validator(
     "UpdatePasswordRequest"
   );
+  Route.post("/refresh-token", "AuthController.refreshToken").middleware(
+    "auth"
+  );
 }).prefix("api/auth");
 
 // Role routes
@@ -56,7 +59,7 @@ Route.group(() => {
 
 // User routes
 Route.group(() => {
-  Route.get("users", "UserController.index");
+  Route.get("users", "UserController.index").middleware(["auth:jwt"]);
   Route.post("users/assign", "UserController.assignProject");
   Route.get("users/:user_id/projects", "UserController.getUserWithProjects");
   Route.get("users/:user_id", "UserController.show").middleware([

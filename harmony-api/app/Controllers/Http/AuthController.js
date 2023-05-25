@@ -52,7 +52,7 @@ class AuthController {
 
         userData.user_image = result.secure_url;
       }
-      
+
       const user = await User.create(userData);
       return response.json(user);
     } catch (error) {
@@ -80,13 +80,28 @@ class AuthController {
         return response.status(401).send({ error: "Invalid password" });
       }
 
-      const token = await auth.generate(user);
+      const token = await auth.withRefreshToken().generate(user);
 
-      Object.assign(user, token);
-      return response.json(user);
+      return response.json({
+        user_id: user.user_id,
+        token: token.token,
+        refreshToken: token.refreshToken,
+      });
     } catch (error) {
       console.error(error);
 
+      return response.status(500).send({ error: "Server error" });
+    }
+  }
+
+  async refreshToken({ auth, response }) {
+    try {
+      const user = auth.user;
+      const { token } = await auth.generate(user);
+
+      return response.json({ token });
+    } catch (error) {
+      console.error(error);
       return response.status(500).send({ error: "Server error" });
     }
   }
