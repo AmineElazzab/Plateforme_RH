@@ -83,7 +83,7 @@ class AuthController {
       const token = await auth.withRefreshToken().generate(user);
 
       return response.json({
-        user_id: user.user_id,
+        user: user.user_id,
         token: token.token,
         refreshToken: token.refreshToken,
       });
