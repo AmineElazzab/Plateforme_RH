@@ -89,7 +89,7 @@ class AuthController {
       return response.json({
         user: user,
         token: token.token,
-        expiresAt: new Date(decodedToken.exp * 1000), // Convert the expiry timestamp to Date object
+        accessTokenExpiry: new Date(decodedToken.exp * 1000),
         refreshToken: token.refreshToken,
       });
     } catch (error) {
@@ -115,8 +115,16 @@ class AuthController {
 
       await auth.authenticator("jwt").revokeTokensForUser(user);
 
+      Object.assign({
+        accessToken: newToken.token,
+        refreshToken: newToken.refreshToken,
+        accessTokenExpiry: new Date(decodedToken.exp * 1000),
+      });
+
       return response.json({
         token: newToken.token,
+        accessTokenExpiry: new Date(decodedToken.exp * 1000),
+        refreshToken: newToken.refreshToken,
       });
     } catch (error) {
       console.error(error);
