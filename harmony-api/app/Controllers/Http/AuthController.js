@@ -1,6 +1,7 @@
 "use strict";
 const User = use("App/Models/User");
 const Hash = use("Hash");
+const jwt = use("jsonwebtoken");
 
 const { tmpdir } = require("os");
 const { join } = require("path");
@@ -82,9 +83,13 @@ class AuthController {
 
       const token = await auth.withRefreshToken().generate(user);
 
+      // Decode the access token to get the expiry date
+      const decodedToken = jwt.decode(token.token);
+
       return response.json({
-        user: user.user_id,
+        user: user,
         token: token.token,
+        accessTokenExpiry: new Date(decodedToken.exp * 1000),
         refreshToken: token.refreshToken,
       });
     } catch (error) {
@@ -94,15 +99,38 @@ class AuthController {
     }
   }
 
-  async refreshToken({ auth, response }) {
+  async refreshAccessToken({ request, auth, response }) {
     try {
-      const user = auth.user;
-      const { token } = await auth.generate(user);
+      const refreshToken = request.input("refresh_token");
 
-      return response.json({ token });
+      if (!refreshToken) {
+        return response.status(400).send({ error: "Refresh token missing" });
+      }
+
+      const newToken = await auth.generateForRefreshToken(refreshToken);
+
+      const decodedToken = jwt.decode(newToken.token);
+
+      const user = await User.find(decodedToken.uid);
+
+      await auth.authenticator("jwt").revokeTokensForUser(user);
+
+      Object.assign({
+        accessToken: newToken.token,
+        refreshToken: newToken.refreshToken,
+        accessTokenExpiry: new Date(decodedToken.exp * 1000),
+      });
+
+      return response.json({
+        token: newToken.token,
+        accessTokenExpiry: new Date(decodedToken.exp * 1000),
+        refreshToken: newToken.refreshToken,
+      });
     } catch (error) {
       console.error(error);
-      return response.status(500).send({ error: "Server error" });
+      return response
+        .status(500)
+        .send({ error: "Server error", message: error.message });
     }
   }
 
