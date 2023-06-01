@@ -1,9 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { styled } from "@mui/material/styles";
-import { withAuthGuard } from "src/hocs/with-auth-guard";
 import { SideNav } from "./side-nav";
 import { TopNav } from "./top-nav";
+import { useSession, signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 
 const SIDE_NAV_WIDTH = 280;
 
@@ -23,10 +24,40 @@ const LayoutContainer = styled("div")({
   width: "100%",
 });
 
-export const Layout = withAuthGuard((props) => {
+export const Layout = (props) => {
   const { children } = props;
   const pathname = usePathname();
   const [openNav, setOpenNav] = useState(false);
+  const [checked, setChecked] = useState(false);
+  const { data: session, status } = useSession();
+
+  const ignore = useRef(false);
+  const router = useRouter();
+  console.log("session", session, "status", status);
+
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    if (status === "loading") {
+      return;
+    }
+
+    if (session?.error === "RefreshAccessTokenError") {
+      signOut({ callbackUrl: "/authentication/login", redirect: true });
+      router.replace("/authentication/login");
+      setIsAuthenticated(false);
+    } else if (!session?.token) {
+      router.replace("/authentication/login");
+      setIsAuthenticated(false);
+    } else {
+      if (router.route === "/authentication/login") {
+        router.replace("/");
+      }
+      setIsAuthenticated(true);
+    }
+
+    setChecked(true);
+  }, [session]);
 
   const handlePathnameChange = useCallback(() => {
     if (openNav) {
@@ -34,13 +65,18 @@ export const Layout = withAuthGuard((props) => {
     }
   }, [openNav]);
 
-  useEffect(
-    () => {
-      handlePathnameChange();
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [pathname]
-  );
+  useEffect(() => {
+    handlePathnameChange();
+  }, [pathname]);
+
+  if (!checked) {
+    return null;
+  }
+
+  if (!isAuthenticated) {
+    router.replace("/authentication/login");
+    return null;
+  }
 
   return (
     <>
@@ -51,4 +87,4 @@ export const Layout = withAuthGuard((props) => {
       </LayoutRoot>
     </>
   );
-});
+};
