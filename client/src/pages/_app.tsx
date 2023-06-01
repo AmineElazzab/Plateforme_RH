@@ -21,23 +21,19 @@ const SplashScreen = () => null;
 //   // other properties
 // };
 
-const App = (props :
-  {
-    Component: React.ComponentType<any>;
-    emotionCache?: any;
-    pageProps: any;
-   
-  }
-  ) => {
+const App = (props: {
+  Component: React.ComponentType<any>;
+  emotionCache?: any;
+  pageProps: any;
+}) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   const queryClient = new QueryClient({});
 
   useNProgress();
-    
-    //getLayout type
-    // getLayout: (page: ReactElement) => ReactNode;
-    
-  
+
+  //getLayout type
+  // getLayout: (page: ReactElement) => ReactNode;
+
   const getLayout = (Component as any).getLayout ?? ((page: JSX.Element) => page);
 
   const theme = createTheme();
