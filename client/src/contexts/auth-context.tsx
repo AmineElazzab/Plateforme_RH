@@ -15,12 +15,12 @@ type ActionType = "INITIALIZE" | "SIGN_IN" | "SIGN_OUT";
 interface State {
   isAuthenticated: boolean;
   isLoading: boolean;
-  user: string | number; 
+  user: string | number;
 }
 
 interface Action {
   type: ActionType;
-  payload?: any; 
+  payload?: any;
 }
 
 const HANDLERS: Record<ActionType, (state: State, action: Action) => State> = {
@@ -72,7 +72,7 @@ const reducer = (state: State, action: Action): State =>
 
 export const AuthContext = createContext<State | undefined>(undefined);
 
-export const AuthProvider = (props) => {
+export const AuthProvider = (props: any) => {
   const { children } = props;
   const [state, dispatch] = useReducer(reducer, initialState);
   const initialized = useRef(false);
