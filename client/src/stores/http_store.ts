@@ -1,6 +1,4 @@
-
-import create from "zustand";
-import { createStore } from "zustand/vanilla";
+import {create} from "zustand";
 import axios, { AxiosInstance, AxiosResponse } from "axios";
 import { API_URL } from "../lib/globals";
 
@@ -9,14 +7,12 @@ const API_BASE_URL_DEV = API_URL;
 
 axios.interceptors.request.use(
     async (config) => {
-      console.log('Intercepted')
       const token = localStorage.getItem('token')
       if (token && config.headers) {
         config.headers['Authorization'] = 'Bearer ' + token
         console.log(token.slice(0,6))
       }
       return config
-      // config.headers['Content-Type'] = 'application/json';
     },
     error => {
       console.error(error)
@@ -41,7 +37,7 @@ interface IHttpStore {
   delete: (params: IHttpData) => Promise<void | AxiosResponse<any, any>>;
 }
 
-const vanillaHttpStore = createStore<IHttpStore>((set, store_get) => ({
+const vanillaHttpStore = create<IHttpStore>((set, store_get) => ({
   client: axios.create({
     headers: {
       "Content-Type": "application/json",
@@ -75,7 +71,6 @@ const vanillaHttpStore = createStore<IHttpStore>((set, store_get) => ({
     } catch (err: any) {
       console.error(err, url);
       if (err.response.status === 401){
-        // logout();
         return Promise.resolve();
       }
       return Promise.resolve();
@@ -84,7 +79,6 @@ const vanillaHttpStore = createStore<IHttpStore>((set, store_get) => ({
 
   post: async (params: IHttpData) => {
     try {
-      
       const response: AxiosResponse = await store_get().client.post(params.url, params.data);
       console.log(response.status)
       return response;
@@ -125,9 +119,8 @@ const vanillaHttpStore = createStore<IHttpStore>((set, store_get) => ({
 }));
 
 
-const httpStore = create(vanillaHttpStore);
-
-// export { vanillaHttpStore, httpStore };
+const httpStore = vanillaHttpStore.getState()
+// console.log(httpStore)
 
 const {
   get,
@@ -142,17 +135,13 @@ const {
 
 client.interceptors.request.use(
 	async (config) => {
-		console.log('Intercepted')
+		// console.log('Intercepted')
     const token = localStorage.getItem('token')
-    console.log(token)
 		if (token && config.headers) {
 			config.headers['Authorization'] = 'Bearer ' + token
 			console.log(token.slice(0,6))
 		}
-		return config
-	
-		// config.headers['Content-Type'] = 'application/json';
-		
+		return config		
 	},
 	error => {
 		console.error(error)
