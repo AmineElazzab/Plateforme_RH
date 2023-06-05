@@ -47,6 +47,7 @@ const providers = [
 const callbacks = {
   jwt: async ({ token, user }) => {
     if (user) {
+      token.role = user.role;
       token.user = user.user;
       token.accessToken = user.token;
       const formattedDate = moment().add(1, "minutes").format("YYYY-MM-DD HH:mm:ss");
@@ -70,6 +71,7 @@ const callbacks = {
   },
   session: async ({ session, token }) => {
     session.user = token.user;
+    session.role = token.role;
     session.token = token.accessToken;
     const shouldRefreshTime = moment(token.accessTokenExpiry).diff(moment(), "seconds");
     session.expires = shouldRefreshTime;
