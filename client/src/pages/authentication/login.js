@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Head from "next/head";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
@@ -6,15 +6,16 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Box, Button, Link, Stack, Tab, Tabs, TextField, Typography } from "@mui/material";
 import { Layout as AuthLayout } from "src/layouts/auth/layout";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 const Page = () => {
   const router = useRouter();
+  const { data: session } = useSession();
 
   const [method, setMethod] = useState("email");
   const formik = useFormik({
     initialValues: {
-      email: "mid@uthucu.mw",
+      email: "email@harmony.ma",
       password: "12345678",
       submit: null,
     },
@@ -30,14 +31,13 @@ const Page = () => {
           redirect: false, // Disable the default redirection behavior of NextAuth
         });
 
-        if (result.ok) {
-          // Manually redirect to the desired page after successful login
-          router.push("/");
-        } else {
-          // Handle the error case
-          helpers.setStatus({ success: false });
-          helpers.setErrors({ submit: result.error });
-        }
+        // if (result.ok) {
+        //   console.log("result", result);
+        //   console.log("sessionStatus", sessionStatus);
+        //   session?.role === "Project Manager" && router.push("/projectmanager");
+        //   session?.role === "Administrator" && router.push("/");
+        //   session?.role === "Collaborator" && router.push("/collaborator");
+        // }
       } catch (err) {
         if (err instanceof Error) {
           // Form errors
@@ -48,6 +48,15 @@ const Page = () => {
     },
   });
 
+  if (session) {
+    if (session?.role === "Project Manager") {
+      router.push("/projectmanager");
+    } else if (session?.role === "Administrator") {
+      router.push("/");
+    } else if (session?.role === "Collaborator") {
+      router.push("/collaborator");
+    }
+  }
   const handleMethodChange = useCallback((event, value) => {
     setMethod(value);
   }, []);
