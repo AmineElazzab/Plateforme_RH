@@ -15,7 +15,7 @@ type ActionType = "INITIALIZE" | "SIGN_IN" | "SIGN_OUT";
 interface State {
   isAuthenticated: boolean;
   isLoading: boolean;
-  user: string | number;
+  user: object;
 }
 
 interface Action {
