@@ -4,26 +4,32 @@ import { login } from "../api/auth";
 import { fetchUser } from "../api/user";
 import JWTToken from "../lib/token";
 
-const HANDLERS = {
-  INITIALIZE: "INITIALIZE",
-  SIGN_IN: "SIGN_IN",
-  SIGN_OUT: "SIGN_OUT",
-};
+type ActionType = "INITIALIZE" | "SIGN_IN" | "SIGN_OUT";
 
-const initialState = {
-  isAuthenticated: false,
-  isLoading: true,
-  user: null,
-};
+// const initialState = {
+//   isAuthenticated: false,
+//   isLoading: true,
+//   user: null,
+// };
 
-const handlers = {
-  [HANDLERS.INITIALIZE]: (state, action) => {
+interface State {
+  isAuthenticated: boolean;
+  isLoading: boolean;
+  user: object;
+}
+
+interface Action {
+  type: ActionType;
+  payload?: any;
+}
+
+const HANDLERS: Record<ActionType, (state: State, action: Action) => State> = {
+  INITIALIZE: (state, action) => {
     const user = action.payload;
 
     return {
       ...state,
-      ...// if payload (user) is provided, then is authenticated
-      (user
+      ...(user
         ? {
             isAuthenticated: true,
             isLoading: false,
@@ -34,7 +40,7 @@ const handlers = {
           }),
     };
   },
-  [HANDLERS.SIGN_IN]: (state, action) => {
+  SIGN_IN: (state, action) => {
     const user = action.payload;
 
     return {
@@ -43,7 +49,7 @@ const handlers = {
       user,
     };
   },
-  [HANDLERS.SIGN_OUT]: (state) => {
+  SIGN_OUT: (state) => {
     return {
       ...state,
       isAuthenticated: false,
@@ -52,14 +58,21 @@ const handlers = {
   },
 };
 
-const reducer = (state, action) =>
-  handlers[action.type] ? handlers[action.type](state, action) : state;
+const initialState: State = {
+  isAuthenticated: false,
+  isLoading: true,
+  user: null,
+};
 
+// const reducer = (state, action) =>
+//   handlers[action.type] ? handlers[action.type](state, action) : state;
+const reducer = (state: State, action: Action): State =>
+  HANDLERS[action.type] ? HANDLERS[action.type](state, action) : state;
 // The role of this context is to propagate authentication state through the App tree.
 
-export const AuthContext = createContext({ undefined });
+export const AuthContext = createContext<State | undefined>(undefined);
 
-export const AuthProvider = (props) => {
+export const AuthProvider = (props: any) => {
   const { children } = props;
   const [state, dispatch] = useReducer(reducer, initialState);
   const initialized = useRef(false);
@@ -89,13 +102,13 @@ export const AuthProvider = (props) => {
         isAuthenticated = false;
       } else {
         dispatch({
-          type: HANDLERS.INITIALIZE,
+          type: "INITIALIZE",
           payload: user.user,
         });
       }
     } else {
       dispatch({
-        type: HANDLERS.INITIALIZE,
+        type: "INITIALIZE",
       });
     }
   };
@@ -108,7 +121,7 @@ export const AuthProvider = (props) => {
     []
   );
 
-  const signIn = async (email, password) => {
+  const signIn = async (email: string, password: string) => {
     const response = await login(email, password);
 
     if (response.error) {
@@ -128,12 +141,12 @@ export const AuthProvider = (props) => {
     }
 
     dispatch({
-      type: HANDLERS.SIGN_IN,
+      type: "SIGN_IN",
       payload: response.data,
     });
   };
 
-  const signUp = async (email, name, password) => {
+  const signUp = async (email: string, name: string, password: string) => {
     throw new Error("Sign up is not implemented");
   };
 
