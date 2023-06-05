@@ -10,7 +10,7 @@ class DocumentSchema extends Schema {
       table.string("document_name", 80).notNullable().unique();
       table.string("document_description", 254).nullable();
       table.string("document_type", 80).nullable();
-      table.string("document_number", 80).nullable();
+      table.number("document_number", 80).nullable();
       table.date("document_date").nullable();
       table.timestamps();
     });

@@ -18,7 +18,7 @@ class TaskSchema extends Schema {
       table.enu("task_complexity", ["low", "medium", "high"]).notNullable();
       table.enu("task_dev_status", ["to do","wip","pending","blocked","ready for test","rework","done",])
         .notNullable().defaultTo("to do");
-      table.boolean("task_rework").notNullable().defaultTo(0);
+      table.boolean(" ").notNullable().defaultTo(0);
       table.boolean("task_functional_test_status").notNullable().defaultTo(0);
       table.integer("task_progress").notNullable().defaultTo(0);
       table.string("task_comments", 245).nullable();
