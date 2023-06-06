@@ -181,6 +181,20 @@ class UserController {
         });
     }
   }
+
+  // get Current User
+  async getCurrentUser({ auth, response }) {
+    try {
+      const user = await auth.getUser()
+      return response.json( user);
+    } catch (error) {
+      console.log(error),
+        response.status(401).send({
+          error:
+            "You are not logged in! ')",
+        });
+    }
+  }
 }
 
 module.exports = UserController;

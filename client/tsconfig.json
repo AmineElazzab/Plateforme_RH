@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "~api/*": ["src/api/*"],
+      "~components/*": ["src/components/*"],
+      "~contexts/*": ["src/contexts/*"],
+      "~guards/*": ["src/guards/*"],
+      "~hocs/*": ["src/hocs/*"],
+      "~hooks/*": ["src/hooks/*"],
+      "~layouts/*": ["src/layouts/*"],
+      "~lib/*": ["src/lib/*"],
+      "~pages/*": ["src/pages/*"],
+      "~sections/*": ["src/sections/*"],
+      "~theme/*": ["src/theme/*"],
+      "~utils/*": ["src/utils/*"],
+      "~styles/*": ["src/styles/*"],
+      // "~icons/*": ["src/icons/*"],
+      // "@types/*": ["src/@types/*"]
+    }
+  },
+
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/lib/token.js", "src/contexts/auth-context.js"],
+  "exclude": ["node_modules"]
+}

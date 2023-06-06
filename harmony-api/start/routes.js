@@ -57,6 +57,7 @@ Route.group(() => {
 // User routes
 Route.group(() => {
   Route.get("users", "UserController.index");
+  Route.get("users/me", "UserController.getCurrentUser").middleware(["auth:jwt"]);
   Route.post("users/assign", "UserController.assignProject");
   Route.get("users/:user_id/projects", "UserController.getUserWithProjects");
   Route.get("users/:user_id", "UserController.show").middleware([

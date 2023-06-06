@@ -1,0 +1,232 @@
+@import "react-tooltip/dist/react-tooltip.css";
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	/* background: #022f47; */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #11aa81a7;
+	border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #20d2a3;
+}
+
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hidden::-webkit-scrollbar {
+	display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hidden {
+	-ms-overflow-style: none;
+	/* IE and Edge */
+	scrollbar-width: none;
+	/* Firefox */
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+.map {
+	width: 100%;
+	height: 100%;
+}
+
+.title {
+	font-size: 3rem;
+	line-height: 1.15;
+	text-align: center;
+	margin: 0 0 1em;
+}
+
+.description {
+	font-size: 1.5rem;
+	line-height: 1.5;
+	text-align: center;
+}
+
+.view {
+	text-align: center;
+	margin-top: 3em;
+}
+
+.code {
+	background: #fafafa;
+	border-radius: 5px;
+	padding: 0.75rem;
+	font-size: 1.1rem;
+	font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+		Bitstream Vera Sans Mono, Courier New, monospace;
+}
+
+.leaflet-popup-content {
+	margin: 0 !important;
+}
+
+.leaflet-popup-content p {
+	margin: 0 !important;
+}
+
+.leaflet-container a {
+	color: initial;
+}
+
+.leaflet-popup-content {
+	font-size: initial !important;
+}
+
+.leaflet-popup-content-wrapper {
+	border-radius: 6px;
+}
+
+.leaflet-popup-close-button {
+	border-radius: 100px;
+}
+
+.leaflet-container {
+	background: #ffffff;
+	outline: 0;
+}
+
+.truncate:has(> .accessfromchild) {
+	overflow: visible !important;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.echo {
+	border: 3px solid blueviolet;
+	border-radius: 5px;
+
+	animation-name: echo-border;
+	animation-duration: 1000ms;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+@keyframes echo-border {
+	from {
+		border-color: transparent;
+	}
+
+	to {
+		border-color: blueviolet;
+	}
+}
+
+.button-radier,
+.button-csv,
+.button-xls,
+.button-pdf {
+	--tool-hover: 0;
+	position: relative;
+}
+
+.button-radier::after,
+.button-csv::after,
+.button-xls::after,
+.button-pdf::after {
+	content: attr(data-tooltip);
+	position: absolute;
+	top: calc(100% + .3rem);
+	left: 0;
+	width: max-content;
+	background-color: #232323;
+	;
+	color: #fff;
+	border-radius: 5px;
+	font-size: .8rem;
+	padding: .4rem;
+	opacity: var(--tool-hover);
+	z-index: 100;
+
+	transition: all 500ms;
+}
+
+.button-radier:hover,
+.button-csv:hover,
+.button-xls:hover,
+.button-pdf:hover {
+	--tool-hover: 1;
+}
+
+
+@keyframes anim-btn-tooltip {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+input[type="search"]::-webkit-search-decoration:hover,
+input[type="search"]::-webkit-search-cancel-button:hover {
+	cursor: pointer;
+}
+
+
+.table-filters {
+	position: absolute;
+	left: 0;
+	top: calc(100% + .3rem);
+	z-index: 50;
+}
+
+.table-item-divider {
+	background-color: #eee;
+	width: 100%;
+	min-height: 2px;
+	max-height: 2px;
+	border-radius: 5px;
+}
+
+
+
+.sam-select {
+	--primary-color: '';
+	--selection-color: '#048060';
+	--selection-hover: '#022639';
+
+	font-size: .7rem;
+	font-size: medium;
+	width: 100%;
+}
+
+
+/* Override default focus colors for tailwindcss-forms https://github.com/tailwindlabs/tailwindcss-forms */
+.sam-select [type='text']:focus,
+.sam-select [type='email']:focus,
+.sam-select [type='url']:focus,
+.sam-select [type='password']:focus,
+.sam-select [type='number']:focus,
+.sam-select [type='date']:focus,
+.sam-select [type='datetime-local']:focus,
+.sam-select [type='month']:focus,
+.sam-select [type='search']:focus,
+.sam-select [type='tel']:focus,
+.sam-select [type='checkbox']:focus,
+.sam-select [type='radio']:focus,
+.sam-select [type='time']:focus,
+.sam-select [type='week']:focus,
+.sam-select [multiple]:focus,
+.sam-select textarea:focus,
+.sam-select select:focus {
+	--tw-ring-color: var(--primary-color);
+	border-color: var(--primary-color);
+}
