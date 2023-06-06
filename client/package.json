@@ -36,6 +36,7 @@
     "js-file-download": "^0.4.12",
     "moment": "^2.29.4",
     "next": "13.1.6",
+    "next-auth": "^4.22.1",
     "nookies": "^2.5.2",
     "nprogress": "0.2.0",
     "prop-types": "15.8.1",

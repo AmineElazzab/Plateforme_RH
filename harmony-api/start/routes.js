@@ -13,6 +13,7 @@ Route.group(() => {
   Route.post("update-password", "AuthController.updatePassword").validator(
     "UpdatePasswordRequest"
   );
+  Route.post("/refresh-token", "AuthController.refreshAccessToken");
 }).prefix("api/auth");
 
 // Role routes

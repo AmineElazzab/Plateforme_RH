@@ -12,18 +12,21 @@ import Image from "next/image";
 import { useForm } from 'react-hook-form';
 import { login } from '~api/auth';
 import JWTToken from '~lib/token';
+import {signIn, useSession } from 'next-auth/react';
+
 import { LoginInputs, loginSchema } from '~lib/validation/auth';
 import { ErrorMessage, Input, Modal, Button, Container, Divider, Checkbox } from '~components/ui';
 import {  redirectUser } from "~utils/utils";
 
 const Page = () => {
 
+  const {data: session, status} = useSession();
   const router = useRouter();
   
   const [err, setErr] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
 
-  const [method, setMethod] = useState("email");
+  // const [method, setMethod] = useState("email");
   const {
     register,
     handleSubmit,
@@ -35,19 +38,26 @@ const Page = () => {
 
   const onSubmit = async (inputs: LoginInputs) => {
   
-    const { data, error } = await login(inputs);
+    const { ok, error } = await signIn("credentials", {...inputs, redirect:false});
 
-    if (data) {
-      console.log({data});
-      JWTToken.store(data.token);
-      return redirectUser(data.user_role_id, router)
+    if (ok) {
+      console.log({error});
     }
-    if (error || !data) {
+    if (error) {
       setErr(error);
       return;
     }
   };
+  if (session) {
+    
+    console.log({"uuuuuuuuu": session.user});
+    console.log({"ddddddddddddddddd": session.user?.user_role_id});
+    // @ts-ignore
+    JWTToken.store(session?.token);
+    // @ts-ignore
 
+    redirectUser(session?.user.user_role_id, router)
+  }
   return (
     <>
 
