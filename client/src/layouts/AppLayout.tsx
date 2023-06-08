@@ -3,6 +3,9 @@ import { useRouter } from 'next/router';
 import { FunctionComponent, ReactElement, useEffect, useState } from 'react';
 import { Slide, ToastContainer } from 'react-toastify';
 import useSessionTimeout from '~hooks/session/useSessionTimeout';
+import JWTToken from '~lib/token';
+import { useSession, signOut } from 'next-auth/react';
+import { usePathname } from 'next/navigation';
 
 import Sidebar from './Sidebar';
 import TopBar from './TopBar';
@@ -26,8 +29,23 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
   useSessionTimeout();
   const { data, refetch } = useCurrentUser();
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const { pathname } = useRouter();
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
+  const pathname = usePathname();
+  const { data: session, status } = useSession();
+  // console.log(session);
+
+  const token = JWTToken.getToken();
+  // console.log('DATA', data);
+
+  useEffect(() => {
+    if (status === 'loading') {
+      return;
+    }
+    if (router.pathname !== '/auth/login' && !token) {
+      router.replace('/auth/login');
+    }
+  }, [session, router.pathname, status]);
 
   useEffect(() => {
     if (data) {
@@ -40,12 +58,13 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
 
   if (pathname !== '/auth/login' && !data) {
     refetch();
+    return null;
   }
 
   if (pathname.includes('auth')) {
     return <>{children}</>;
   }
-  if (isLoading) {
+  if (status === 'loading' || isLoading) {
     // Show a loading spinner or placeholder while data is being fetched
     return (
       <div className="w-screen h-screen flex justify-center items-center p-80">
