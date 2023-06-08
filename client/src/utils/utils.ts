@@ -27,7 +27,7 @@ export const redirectUser = async (roleId: number, router: any) => {
     const  role_name  = roleData.role_name;
     console.log(role_name);
     switch (role_name.toLowerCase()) {
-      case "admin":
+      case "administrator":
         router.push("/admin");
         break;
       case "project manager":
