@@ -1,31 +1,32 @@
-import {create} from "zustand";
-import axios, { AxiosInstance, AxiosResponse } from "axios";
-import { API_URL } from "../lib/globals";
+import { create } from 'zustand';
+import axios, { AxiosInstance, AxiosResponse } from 'axios';
+import { API_URL } from '../lib/globals';
+import JWTToken from '~lib/token';
 
 // const API_BASE_URL_DEV = 'http://127.0.0.1:8000/api'
 const API_BASE_URL_DEV = API_URL;
 
-axios.interceptors.request.use(
-    async (config) => {
-      const token = localStorage.getItem('token')
-      if (token && config.headers) {
-        config.headers['Authorization'] = 'Bearer ' + token
-        console.log(token.slice(0,6))
-      }
-      return config
-    },
-    error => {
-      console.error(error)
-      Promise.reject(error)
+axios.create().interceptors.request.use(
+  async (config) => {
+    // const token = localStorage.getItem('token');
+    const token = JWTToken.getToken();
+    if (token && config.headers) {
+      config.headers['Authorization'] = 'Bearer' + token;
+      console.log(token.slice(0, 6));
     }
-)
+    return config;
+  },
+  (error) => {
+    console.error(error);
+    Promise.reject(error);
+  }
+);
 
 export type KeyValue = Record<string, string | number | boolean | unknown>;
 export interface IHttpData {
   url: string;
   data: KeyValue;
 }
-
 
 interface IHttpStore {
   client: AxiosInstance;
@@ -40,16 +41,16 @@ interface IHttpStore {
 const vanillaHttpStore = create<IHttpStore>((set, store_get) => ({
   client: axios.create({
     headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
     },
   }),
   setToken: (payload) =>
     set((state) => ({
       client: axios.create({
         headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
           Authorization: `Bearer ${payload}`,
         },
       }),
@@ -58,8 +59,8 @@ const vanillaHttpStore = create<IHttpStore>((set, store_get) => ({
     set((state) => ({
       client: axios.create({
         headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
       }),
     })),
@@ -70,7 +71,7 @@ const vanillaHttpStore = create<IHttpStore>((set, store_get) => ({
       return response;
     } catch (err: any) {
       console.error(err, url);
-      if (err.response.status === 401){
+      if (err.response.status === 401) {
         return Promise.resolve();
       }
       return Promise.resolve();
@@ -80,11 +81,11 @@ const vanillaHttpStore = create<IHttpStore>((set, store_get) => ({
   post: async (params: IHttpData) => {
     try {
       const response: AxiosResponse = await store_get().client.post(params.url, params.data);
-      console.log(response.status)
+      console.log(response.status);
       return response;
     } catch (err: any) {
       console.error(err, params);
-      if (err.response.status === 401){
+      if (err.response.status === 401) {
         return Promise.resolve();
       }
       return Promise.resolve();
@@ -95,7 +96,7 @@ const vanillaHttpStore = create<IHttpStore>((set, store_get) => ({
     try {
       const response = await store_get().client.put(params.url, params.data);
       if (response.status === 401) {
-        console.log("access token incorrect");
+        console.log('access token incorrect');
       }
       return response;
     } catch (err) {
@@ -108,7 +109,7 @@ const vanillaHttpStore = create<IHttpStore>((set, store_get) => ({
     try {
       const response = await store_get().client.delete(params.url, params.data);
       if (response.status === 401) {
-        console.log("access token incorrect");
+        console.log('access token incorrect');
       }
       return response;
     } catch (err) {
@@ -118,8 +119,7 @@ const vanillaHttpStore = create<IHttpStore>((set, store_get) => ({
   },
 }));
 
-
-const httpStore = vanillaHttpStore.getState()
+const httpStore = vanillaHttpStore.getState();
 // console.log(httpStore)
 
 const {
@@ -129,25 +129,25 @@ const {
   setToken,
   removeToken,
   delete: http_delete,
-	client
+  client,
 } = vanillaHttpStore.getState();
 
-
 client.interceptors.request.use(
-	async (config) => {
-		// console.log('Intercepted')
-    const token = localStorage.getItem('token')
-		if (token && config.headers) {
-			config.headers['Authorization'] = 'Bearer ' + token
-			console.log(token.slice(0,6))
-		}
-		return config		
-	},
-	error => {
-		console.error(error)
-		Promise.reject(error)
-	}
-)
+  async (config) => {
+    // console.log('Intercepted')
+    // const token = localStorage.getItem('token')
+    const token = JWTToken.getToken();
+    if (token && config.headers) {
+      config.headers['Authorization'] = token;
+      console.log(token.slice(0, 6));
+    }
+    return config;
+  },
+  (error) => {
+    console.error(error);
+    Promise.reject(error);
+  }
+);
 
 const HttpClient = {
   get,
@@ -158,6 +158,5 @@ const HttpClient = {
   clearAuthorization: removeToken,
   base_url: API_BASE_URL_DEV,
 };
-
 
 export default HttpClient;
