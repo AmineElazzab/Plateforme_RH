@@ -32,6 +32,8 @@
       "~theme/*": ["src/theme/*"],
       "~utils/*": ["src/utils/*"],
       "~styles/*": ["src/styles/*"],
+      "~stores/*": ["src/stores/*"],
+      "~interfaces/*": ["src/interfaces/*"],
       // "~icons/*": ["src/icons/*"],
       // "@types/*": ["src/@types/*"]
     }
