@@ -3,10 +3,8 @@ import { useRouter } from 'next/router';
 import { FunctionComponent, ReactElement, useEffect, useState } from 'react';
 import { Slide, ToastContainer } from 'react-toastify';
 import useSessionTimeout from '~hooks/session/useSessionTimeout';
-import JWTToken from '~lib/token';
-import { useSession, signOut } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
-
 import Sidebar from './Sidebar';
 import TopBar from './TopBar';
 
@@ -32,20 +30,25 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   const pathname = usePathname();
-  const { data: session, status } = useSession();
-  // console.log(session);
+  // const { data: session } = useSession();
 
-  const token = JWTToken.getToken();
-  // console.log('DATA', data);
+  const { status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      router.push('/auth/login');
+    },
+  });
 
-  useEffect(() => {
-    if (status === 'loading') {
-      return;
-    }
-    if (router.pathname !== '/auth/login' && !token) {
-      router.replace('/auth/login');
-    }
-  }, [session, router.pathname, status]);
+  // const token = JWTToken.getToken();
+
+  // useEffect(() => {
+  //   // if (status === 'loading') {
+  //   //   return;
+  //   // }
+  //   if (router.pathname !== '/auth/login' && !token) {
+  //     router.replace('/auth/login');
+  //   }
+  // }, [session, router.pathname, status]);
 
   useEffect(() => {
     if (data) {
