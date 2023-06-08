@@ -50,8 +50,9 @@ export function useCurrentUser(ctx?: any) {
   //     staleTime: COMMON_STALE_TIME,
   //   });
   // }
-
-  return useQuery(['current-user'], () => getCurrentsUsers(ctx), {
+  return useQuery({
+    queryKey: ['current-user'],
+    queryFn: getCurrentsUsers,
     staleTime: COMMON_STALE_TIME,
   });
 }

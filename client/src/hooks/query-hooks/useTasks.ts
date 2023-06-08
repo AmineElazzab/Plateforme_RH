@@ -1,27 +1,24 @@
 import { useQuery } from '@tanstack/react-query';
-import client from '~lib/client';
 import { COMMON_STALE_TIME } from '~lib/globals';
 import { PERMISSIONS } from '~lib/static-data/permissions';
-import JWTToken from '~lib/token';
+import HttpClient from '../../stores/http_store';
 
-export function getTasks(ctx: any = null) {
-  return async () => {
-    const token = JWTToken.getToken(ctx);
-    const { data } = await client.get('/tasks', {
-      headers: {
-        Authorization: token,
-      },
-      params: {},
-    });
-    return data;
-  };
+export async function getTasks(ctx?: any) {
+  const url = `${HttpClient.base_url}tasks`;
+  return HttpClient.get(url).then((response) => {
+    if (response && response.status === 200) {
+      const tasks = response.data;
+      // console.log(url)
+      // console.log(tasks);
+      return Promise.resolve(tasks);
+    }
+    return Promise.reject(null);
+  });
 }
 
 export function useTasks(ctx?: any) {
-  // TODO: 🚩 check all critical arguments
-  return useQuery({
-    queryKey: ['tasks'],
-    queryFn: getTasks(ctx),
+  //   // TODO: 🚩 check all critical arguments
+  return useQuery(['tasks'], () => getTasks(ctx), {
     staleTime: COMMON_STALE_TIME,
     enabled: PERMISSIONS['GET_TASKS'],
   });
