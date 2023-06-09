@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import Head from 'next/head';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 import { Stack } from '@mui/material';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
-import { login } from '~api/auth';
 import JWTToken from '~lib/token';
 import { signIn, useSession } from 'next-auth/react';
 
@@ -42,8 +41,6 @@ const Page = () => {
     }
   };
   if (session) {
-    console.log({ uuuuuuuuu: session.user });
-    console.log({ ddddddddddddddddd: session.user?.user_role_id });
     // @ts-ignore
     JWTToken.store(session?.token);
     // @ts-ignore
@@ -86,7 +83,7 @@ const Page = () => {
 
             <form noValidate onSubmit={handleSubmit(onSubmit)}>
               <Stack spacing={4}>
-                <ErrorMessage message={err ? 'Invalid Email or Password ' : ''} />
+                <ErrorMessage message={err} />
 
                 {/* Email  */}
                 <Input

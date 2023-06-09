@@ -2,7 +2,6 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import client from "~lib/client";
 import moment from "moment";
-import axios from "axios";
 
 async function refreshAccessToken(refresh_token: string) {
   try {
