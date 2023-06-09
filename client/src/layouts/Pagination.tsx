@@ -6,8 +6,8 @@ import {
   ChevronDoubleRightIcon,
 } from '@heroicons/react/solid';
 import { DOTS, usePagination } from '../../lib/hooks/usePagination';
-import { cn } from '../../lib/utils';
-import { Button } from '../ui';
+import { cn } from '../utils/utils';
+import { Button } from '~components/ui';
 
 type Props = {
   onPageChange: any;

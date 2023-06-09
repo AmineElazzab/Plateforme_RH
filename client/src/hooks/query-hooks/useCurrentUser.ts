@@ -9,7 +9,7 @@ export async function getCurrentsUsers(ctx?: any) {
   return HttpClient.get(url).then((response) => {
     if (response && response.status === 200) {
       const user = response.data;
-      // console.log(url)
+      console.log(url)
       // console.log(user)
       return Promise.resolve(user);
     }

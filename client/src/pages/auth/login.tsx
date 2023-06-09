@@ -109,6 +109,7 @@ const Page = () => {
                 <div className="text-sm my-2 p-2 flex justify-between mt-2">
                   <div className="flex items-center space-x-1.5">
                     <input
+                      aria-label="hi"
                       type="checkbox"
                       checked={showPassword}
                       onChange={() => setShowPassword(!showPassword)}

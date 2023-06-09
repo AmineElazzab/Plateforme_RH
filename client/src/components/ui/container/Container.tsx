@@ -12,14 +12,14 @@ type ContainerProps = {
 const Container = ({
     children,
     backgroundColor = 'bg-white',
-    padding = 'p-4',
-    borderRadius = 'rounded-md',
+    // padding = 'p-4',
+    // borderRadius = 'rounded-md',
     className = '',
 }: ContainerProps) => {
     return (
         <div
             className={cn(
-                `${backgroundColor} ${padding} ${borderRadius} ${className}`,
+                `${backgroundColor}  ${className}`,
             )}
         >
             {children}

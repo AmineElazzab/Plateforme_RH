@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from 'next/document';
 
 export default function Document() {
   return (
-    <Html className="h-full bg-gray-100">
+    <Html className="h-screen">
       <Head>
         <link rel="shortcut icon" href="/favicon-main.ico" />
         <link
@@ -12,7 +12,7 @@ export default function Document() {
           crossOrigin=""
         />
       </Head>
-      <body className="h-full">
+      <body className="h-screen">
         <Main />
         <NextScript />
       </body>
