@@ -35,7 +35,9 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
   const { status } = useSession({
     required: true,
     onUnauthenticated() {
-      router.push('/auth/login');
+      if (router.pathname !== '/auth/login') {
+        router.push('/auth/login');
+      }
     },
   });
 
