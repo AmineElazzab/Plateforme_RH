@@ -5,6 +5,9 @@ import { COMMON_STALE_TIME } from '~lib/globals';
 import HttpClient from '../../stores/http_store';
 
 export async function getCurrentsUsers(ctx?: any) {
+  if (window.location.pathname === '/auth/login') {
+    return Promise.resolve(null);
+  }
   const url = `${HttpClient.base_url}users/me`;
   return HttpClient.get(url).then((response) => {
     if (response && response.status === 200) {
