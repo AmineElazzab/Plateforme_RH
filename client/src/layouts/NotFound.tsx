@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import Lottie from 'react-lottie';
 import { Button } from '~components/ui';
-import * as animationData from '../../../public/404.json';
+import * as animationData from '../../public/404.json';
 
 type Props = {};
 
