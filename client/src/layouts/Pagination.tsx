@@ -91,7 +91,7 @@ const Pagination = (props: Props) => {
           <ChevronLeftIcon />
         </Button>
         <div className="hidden md:flex gap-2">
-          {paginationRange?.map((pageNumber, idx) => {
+          {paginationRange?.map((pageNumber:number, idx:number) => {
             // If the pageItem is a DOT, render the DOTS unicode character
 
             if (pageNumber === DOTS) {
