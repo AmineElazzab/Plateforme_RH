@@ -9,7 +9,6 @@ import { Calendar, Search, Notification } from 'react-iconly';
 // import notificationSFX from './notification.mp3';
 import JWTToken from '~lib/token';
 import { signOut } from 'next-auth/react';
-import { useRouter } from 'next/router';
 
 type Props = {};
 
@@ -17,11 +16,9 @@ export default function TopBar({}: Props) {
   const imageStyle = {
     objectFit: 'contain',
   };
-  const router = useRouter();
   const HandleSignout = () => {
     signOut({ redirect: false });
     JWTToken.removeToken();
-    router.push('/auth/login');
   };
 
   return (

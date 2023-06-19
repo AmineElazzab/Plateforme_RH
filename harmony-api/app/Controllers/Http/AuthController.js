@@ -1,5 +1,6 @@
 "use strict";
 const User = use("App/Models/User");
+const Role = use("App/Models/Role");
 const Hash = use("Hash");
 const jwt = use("jsonwebtoken");
 
@@ -75,6 +76,11 @@ class AuthController {
         return response.status(404).send({ error: "User not found" });
       }
 
+      const userRoleName = await Role.findBy("role_id", user.user_role_id);
+
+      // if (!email.endsWith("@harmony.ma")) {
+      //   return response.status(401).send({ error: "Invalid email" });
+      // }
       const isPasswordValid = await Hash.verify(password, user.password);
 
       if (!isPasswordValid) {
@@ -86,8 +92,20 @@ class AuthController {
       // Decode the access token to get the expiry date
       const decodedToken = jwt.decode(token.token);
 
+      const userWithoutPassword = {
+        user_id: user.user_id,
+        email: user.email,
+        user_fullname: user.user_fullname,
+        user_address: user.user_address,
+        user_phone: user.user_phone,
+        user_image: user.user_image,
+        user_department_id: user.user_department_id,
+        user_role_id: user.user_role_id,
+      };
+
       return response.json({
-        user: user,
+        user: userWithoutPassword,
+        role: userRoleName.role_name,
         token: token.token,
         accessTokenExpiry: new Date(decodedToken.exp * 1000),
         refreshToken: token.refreshToken,
@@ -111,9 +129,9 @@ class AuthController {
 
       const decodedToken = jwt.decode(newToken.token);
 
-      const user = await User.find(decodedToken.uid);
+      // const user = await User.find(decodedToken.uid);
 
-      await auth.authenticator("jwt").revokeTokensForUser(user);
+      // await auth.authenticator("jwt").revokeTokensForUser(user);
 
       Object.assign({
         accessToken: newToken.token,
@@ -131,6 +149,19 @@ class AuthController {
       return response
         .status(500)
         .send({ error: "Server error", message: error.message });
+    }
+  }
+
+  async logout({ auth, response }) {
+    try {
+      const user = await auth.getUser();
+
+      await auth.authenticator("jwt").revokeTokensForUser(user);
+
+      return response.status(200).send({ message: "Logout successful" });
+    } catch (error) {
+      console.error(error);
+      return response.status(500).send({ error: "Server error" });
     }
   }
 
