@@ -31,6 +31,7 @@
     "@adonisjs/shield": "^1.0.8",
     "@adonisjs/validator": "^5.1.0",
     "@adonisjs/vow": "^1.0.17",
+    "adonis-throttle": "^2.3.6",
     "cloudinary": "^1.37.0",
     "mysql": "^2.18.1"
   },
