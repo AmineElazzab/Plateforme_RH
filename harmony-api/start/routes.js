@@ -14,7 +14,9 @@ Route.group(() => {
     "UpdatePasswordRequest"
   );
   Route.post("/refresh-token", "AuthController.refreshAccessToken");
-}).prefix("api/auth");
+})
+  .prefix("api/auth")
+  .middleware("throttle:15");
 
 // Role routes
 Route.group(() => {
@@ -37,7 +39,9 @@ Route.group(() => {
     "auth:jwt",
     "checkUserRolePermissions:Administrator",
   ]);
-}).prefix("api");
+})
+  .prefix("api")
+  .middleware("throttle:15");
 
 // Department routes
 Route.group(() => {
@@ -53,12 +57,16 @@ Route.group(() => {
     "departments/:departement_id",
     "DepartmentController.destroy"
   ).middleware(["auth:jwt", "checkUserRolePermissions:Administrator"]);
-}).prefix("api");
+})
+  .prefix("api")
+  .middleware("throttle:15");
 
 // User routes
 Route.group(() => {
   Route.get("users", "UserController.index");
-  Route.get("users/me", "UserController.getCurrentUser").middleware(["auth:jwt"]);
+  Route.get("users/me", "UserController.getCurrentUser").middleware([
+    "auth:jwt",
+  ]);
   Route.post("users/assign", "UserController.assignProject");
   Route.get("users/:user_id/projects", "UserController.getUserWithProjects");
   Route.get("users/:user_id", "UserController.show").middleware([
@@ -68,7 +76,9 @@ Route.group(() => {
   Route.put("users/:user_id", "UserController.update").middleware(["auth:jwt"]);
   // Route.delete("users/projects", "UserController.deleteProject");
   // Route.put("users/:user_id/projects", "UserController.updateProject");
-}).prefix("api");
+})
+  .prefix("api")
+  .middleware("throttle:15");
 
 //Project routes
 Route.group(() => {
@@ -79,7 +89,9 @@ Route.group(() => {
     "UpdateProject"
   );
   Route.delete("delete/:project_id", "ProjectController.destroy");
-}).prefix("api");
+})
+  .prefix("api")
+  .middleware("throttle:15");
 
 //Task routes
 Route.group(() => {
@@ -89,7 +101,9 @@ Route.group(() => {
   Route.put("task/:task_id", "TaskController.update").validator("UpdateTask");
   Route.delete("deleteTask/:task_id", "TaskController.destroy");
   Route.post("task/assign", "TaskController.assignTask");
-}).prefix("api");
+})
+  .prefix("api")
+  .middleware("throttle:15");
 
 //Salary routes
 Route.group(() => {
@@ -100,7 +114,9 @@ Route.group(() => {
     "UpdateSalary"
   );
   Route.delete("salary/:salary_id", "SalaryController.destroy");
-}).prefix("api");
+})
+  .prefix("api")
+  .middleware("throttle:15");
 
 //Risk routes
 Route.group(() => {
@@ -109,7 +125,9 @@ Route.group(() => {
   Route.get("risk/:risk_id", "RiskController.show");
   Route.put("risk/:risk_id", "RiskController.update").validator("UpdateRisk");
   Route.delete("risk/:risk_id", "RiskController.destroy");
-}).prefix("api");
+})
+  .prefix("api")
+  .middleware("throttle:15");
 
 //Skill routes
 Route.group(() => {
@@ -123,12 +141,16 @@ Route.group(() => {
   Route.get("skill/:skill_name", "SkillController.getSkillByName");
   Route.post("skill", "SkillController.assignSkill");
   Route.get("skill/:skill_user_id", "SkillController.getUserSkills");
-}).prefix("api");
+})
+  .prefix("api")
+  .middleware("throttle:15");
 
 //Suggestion routes
 Route.group(() => {
   Route.post("suggestion", "SuggestionController.sendSuggestionEmail");
-}).prefix("api");
+})
+  .prefix("api")
+  .middleware("throttle:15");
 
 //Training routes
 Route.group(() => {
@@ -142,4 +164,6 @@ Route.group(() => {
   );
   Route.delete("deleteTraining/:training_id", "TrainingController.destroy");
   Route.post("training/user", "TrainingController.assingTraining");
-}).prefix("api");
+})
+  .prefix("api")
+  .middleware("throttle:15");
